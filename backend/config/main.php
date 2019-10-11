@@ -11,10 +11,29 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+
+    'modules' => [
+        'rbac' => [
+            'class' => 'mdm\admin\Module',
+            'controllerMap' => [
+                'assignment' => [
+                    'class' => 'mdm\admin\controllers\AssignmentController',
+                    'idField' => 'id',
+                    'usernameField' => 'username',
+                ],
+            ],
+            'layout' => 'left-menu',
+            'mainLayout' => '@app/views/layouts/main.php',
+        ]
+    ],
+
     'components' => [
         'request' => [
+            //            'baseUrl' => '',
             'csrfParam' => '_csrf-backend',
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager', // or use 'yii\rbac\DbManager'
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -37,14 +56,24 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'logout' => 'site/logout',
+                'login' => 'site/login',
+//                '<controller:\w+>/<action:\w+>/' => '<controller>/<action>',
             ],
         ],
-        */
+
+    ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+            '*',
+        ]
     ],
     'params' => $params,
 ];
