@@ -1,6 +1,8 @@
 <?php
 
 use mdm\admin\components\MenuHelper;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\Menu;
 
 ?>
@@ -10,8 +12,13 @@ use yii\widgets\Menu;
             <div class="user-profile">
                 <div class="dropdown user-pro-body">
                     <div class="profile-image">
-                        <img src="<?= Yii::$app->homeUrl ?>plugins/images/users/jeffery.jpg" alt="user-img"
-                             class="img-circle">
+                        <?php
+                        $profile_image = 'images/profile/profile_no_photo.jpg';
+                        if (Yii::$app->user->identity->account && file_exists('images/profile/'.Yii::$app->user->identity->account->image)){
+                            $profile_image = 'images/profile/'.Yii::$app->user->identity->account->image;
+                        }
+                        ?>
+                        <img src="<?= Yii::$app->homeUrl.$profile_image; ?>" alt="user-img" class="img-circle">
                         <a href="javascript:void(0);" class="dropdown-toggle u-dropdown text-blue"
                            data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                             <span class="badge badge-danger">
@@ -19,20 +26,38 @@ use yii\widgets\Menu;
                             </span>
                         </a>
                         <ul class="dropdown-menu animated flipInY">
-                            <li><a href="javascript:void(0);"><i class="fa fa-user"></i> Profile</a></li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-inbox"></i> Inbox</a></li>
+                            <li><a href="<?= Url::to(['account/view', 'id'=>Yii::$app->user->identity->account->id])?>"><i class="fa fa-user"></i> Profile</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="fa fa-cog"></i> Account Settings</a></li>
+                            <li><a href="<?= Url::to(['account/create'])?>"><i class="fa fa-cog"></i> Account Settings</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href=""><i class="fa fa-power-off"></i> Logout</a></li>
+<!--                            <li><a href=""><i class="fa fa-power-off"></i> Logout</a></li>-->
+                            <li>
+                                <?= Html::a(
+                                    "<i class='fa fa-power-off'></i>".Yii::t('app', 'Logout'),
+                                    ['/site/logout'],
+                                    ['data-method' => 'post']
+                                ) ?>
+                            </li>
                         </ul>
                     </div>
-                    <p class="profile-text m-t-15 font-16"><a href="javascript:void(0);"> Hanna Gover</a></p>
+                    <p class="profile-text m-t-15 font-16">
+                        <a href="javascript:void(0);">
+                            <?= Yii::$app->user->identity->accountName ?>
+                        </a>
+                    </p>
                 </div>
             </div>
             <nav class="sidebar-nav active">
                 <ul id="side-menu" class="in">
-                    <li class="active">
+                    <li class="">
+                        <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i
+                                    class="icon-user-following fa-fw"></i> <span class="hide-menu"> Account </span></a>
+                        <ul aria-expanded="true" class="collapse in">
+                            <li class=""><a href="<?= Url::to(['account/view', 'id'=>Yii::$app->user->identity->account->id])?>">View your account</a></li>
+                            <li class=""><a href="<?= Url::to(['account/create'])?>">Edit your account</a></li>
+                        </ul>
+                    </li>
+                    <li class="">
                         <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i
                                     class="icon-screen-desktop fa-fw"></i> <span class="hide-menu"> Dashboard <span
                                         class="label label-rounded label-info pull-right">3</span></span></a>

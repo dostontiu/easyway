@@ -1,6 +1,7 @@
 <?php
 
 use common\widgets\Alert;
+use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this \yii\web\View */
@@ -8,13 +9,14 @@ use yii\widgets\Breadcrumbs;
 ?>
 <div class="page-wrapper" style="min-height: 876px;">
     <div class="container-fluid">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                'options' => ['class' => 'breadcrumb white-box']
+            ]) ?>
+            <?= Alert::widget() ?>
         <div class="row">
             <div class="col-md-12">
                 <div class="white-box">
-                    <?= Breadcrumbs::widget([
-                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ]) ?>
-                    <?= Alert::widget() ?>
                     <?= $content ?>
                 </div>
             </div>
@@ -71,12 +73,6 @@ use yii\widgets\Breadcrumbs;
                             <li>
                                 <a href="javascript:void(0)"><img src="<?=Yii::$app->homeUrl?>plugins/images/users/4.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
                             </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="<?=Yii::$app->homeUrl?>plugins/images/users/5.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)"><img src="<?=Yii::$app->homeUrl?>plugins/images/users/6.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
-                            </li>
                         </ul>
                     </div>
                 </div><div class="slimScrollBar" style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
@@ -84,6 +80,7 @@ use yii\widgets\Breadcrumbs;
         <!-- ===== Right-Sidebar-End ===== -->
     </div>
     <!-- /.container-fluid -->
-    <footer class="footer t-a-c"> © 2017 Cubic Admin
+    <footer class="footer t-a-c">
+        &copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?>
     </footer>
 </div>

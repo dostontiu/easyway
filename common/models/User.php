@@ -21,6 +21,8 @@ use yii\web\IdentityInterface;
  * @property integer $created_at
  * @property integer $updated_at
  * @property string $password write-only password
+ * @property Account $account
+ * @property Account $accountName
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -205,5 +207,16 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getAccount()
+    {
+        return $this->hasOne(Account::className(), ['user_id' => 'id']);
+    }
+
+    public function getAccountName()
+    {
+        $fullName = $this->hasOne(Account::className(), ['user_id' => 'id'])->one();
+        return ($fullName) ? $fullName->first_name." ".$fullName->last_name : $this->username;
     }
 }
