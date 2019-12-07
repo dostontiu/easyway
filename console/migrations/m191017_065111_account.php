@@ -27,7 +27,7 @@ class m191017_065111_account extends Migration
         ]);
 
         $this->createIndex('idx-account-user_id','account','user_id');
-        $this->addForeignKey('fk-account-user_id','account', 'user_id', 'user', 'id');
+        $this->addForeignKey('fk-account-user_id','account', 'user_id', 'user', 'id', 'CASCADE');
     }
 
     public function safeDown()
