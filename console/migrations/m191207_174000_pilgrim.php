@@ -39,7 +39,7 @@ class m191207_174000_pilgrim extends Migration
         ]);
 
         $this->createIndex('idx-pilgrim-nationality_id', 'pilgrim', 'nationality_id');
-        $this->addForeignKey('fk-pilgrim-nationality_id', 'pilgrim', 'nationality_id', 'country_id', 'id', 'CASCADE');
+        $this->addForeignKey('fk-pilgrim-nationality_id', 'pilgrim', 'nationality_id', 'country', 'id', 'CASCADE');
 
         $this->createIndex('idx-pilgrim-region_id', 'pilgrim', 'region_id');
         $this->addForeignKey('fk-pilgrim-region_id', 'pilgrim', 'region_id', 'region', 'id', 'CASCADE');
