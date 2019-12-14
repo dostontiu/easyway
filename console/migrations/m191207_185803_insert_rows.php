@@ -27,7 +27,7 @@ class m191207_185803_insert_rows extends Migration
             'verification_token' => 'dxQb3X86iGZeroKHp_562HAdjN1ZPcoF_1570989753',
         ]);*/
 
-        $this->insert('account', [
+        /*$this->insert('account', [
             'first_name' => 'Doston',
             'last_name' => 'Ismailov',
             'father_name' => 'Nishanovich',
@@ -55,7 +55,7 @@ class m191207_185803_insert_rows extends Migration
             'name' => 'Saudia',
             'code' => 'SAP',
             'zip_code' => '06512032',
-        ]);
+        ]);*/
     }
 
     /**
