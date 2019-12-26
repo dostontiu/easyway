@@ -24,7 +24,10 @@ return [
             ],
             'layout' => 'left-menu',
             'mainLayout' => '@app/views/layouts/main.php',
-        ]
+        ],
+        'import' => [
+            'class' => 'app\modules\import\Module',
+        ],
     ],
 
     'components' => [

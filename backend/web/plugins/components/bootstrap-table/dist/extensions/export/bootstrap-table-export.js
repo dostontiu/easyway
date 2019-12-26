@@ -14,7 +14,7 @@
         txt: 'TXT',
         sql: 'SQL',
         doc: 'MS-Word',
-        excel: 'Ms-Excel',
+        excel: 'Ms-ExcelController',
         powerpoint: 'Ms-Powerpoint',
         pdf: 'PDF'
     };
