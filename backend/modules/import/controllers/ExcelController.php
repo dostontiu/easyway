@@ -2,7 +2,7 @@
 
 namespace app\modules\import\controllers;
 
-use app\models\UploadExcel;
+use common\models\UploadExcel;
 use Yii;
 use yii\web\Controller;
 use yii\web\UploadedFile;
@@ -16,14 +16,14 @@ class ExcelController extends Controller
         $model = new UploadExcel();
         $file = UploadedFile::getInstance($model, 'file');
         $errors = [];
-        if (Yii::$app->request->post() && $file != null){
-            $name = Yii::$app->security->generateRandomString(12).'.'.$file->extension;
-            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/';
-            $path = Yii::$app->params['uploadPath'] . $name;
-            $file->saveAs($path);
-
-            $fileName = $path;
-//            $fileName = 'uploads/2020.xlsx';
+//        if (Yii::$app->request->post() && $file != null){
+//            $name = Yii::$app->security->generateRandomString(12).'.'.$file->extension;
+//            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/excel/';
+//            $path = Yii::$app->params['uploadPath'] . $name;
+//            $file->saveAs($path);
+//
+//            $fileName = $path;
+            $fileName = 'uploads/excel/Jt9YagIhq_U1.xls';
             try {
                 $inputFileType = \PHPExcel_IOFactory::identify($fileName);
                 $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
@@ -35,52 +35,27 @@ class ExcelController extends Controller
             $highestRow = $sheet->getHighestRow();
             $highestColumn = $sheet->getHighestColumn();
 
+            $data = [];
             for ($row=1; $row<=$highestRow; $row++) {
                 $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
                 if ($row == 1) {
                     continue;
                 }
-                $inn = explode(' ', $rowData[0][3]);
-                $client_id = $this->findClientId($rowData[0][3]);
-                if (!is_numeric($client_id)){
-                    $errors[$row] = $rowData;
-                    continue;
-                }
-//                prd($rowData[0]);
+//                echo '<pre>';
+//                print_r($this->SeparateExcel($rowData[0]));
+//                die();
 
-                $payment = new Payment();
-                $payment->client_id = $client_id;
-                $payment->certificate_id = null;
-                $payment->doc_no = $rowData[0][0];
-                $payment->date = excelToDate($rowData[0][1]);
-                $payment->amount = $rowData[0][2];
-                if ($payment->save()){
-                    Yii::$app->session->setFlash('success', 'Success');
-                }else{
-                    $errors[$row] = $rowData;
-                }
+                $data[] = $this->SeparateExcel($rowData);
             }
 
 //            pr($errors);
-        }
-        return $this->render('excel', ['model' => $model, 'errors' => $errors]);
+//        }
+        return $this->render('index', ['model' => $model, 'data' => $data]);
     }
 
-    public function findClientId($inn)
+    public function SeparateExcel($rowData = [])
     {
-        $client = Client::find()->where(['inn' => substr($inn, 0,9)])->one();
-
-        if ($client == null){
-            $model = new Client();
-            $model->name = substr($inn,8, strlen($inn)-36);
-            $model->h_raqam = substr($inn, -26);
-            $model->inn = substr($inn, 0,9);
-            if ($model->save()){
-                return (int)$model->id;
-            } else {
-                return $model->getErrors();
-            }
-        }
-        return (int)$client->id;
+        $rowData[1][1] = 'Salom';
+        return $rowData;
     }
 }

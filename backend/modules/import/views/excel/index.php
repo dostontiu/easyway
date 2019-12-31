@@ -11,17 +11,34 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="excel-index container">
 
-    <?php //pr($errors);?>
-    <?php if (!empty($errors)) :?>
+    <?php //pr($data);?>
+    <?php if (!empty($data)) :?>
         <h2 class="text-center">Информация ниже не добовлена</h2>
         <table class="table table-bordered table-hover">
-            <?php foreach ($errors as $error) {
+            <tr>
+                <td>ID</td>
+                <td>Title</td>
+                <td>Gender</td>
+                <td>Relation</td>
+                <td>FirstName</td>
+                <td>FatherName</td>
+                <td>GrandFather</td>
+                <td>FamilyName</td>
+                <td>BirthDate</td>
+                <td>PassportNo</td>
+            </tr>
+            <?php foreach ($data as $item) {
                 echo '<tr>';
-                echo '<td>'. $error[0][1] .'</td>';
-                echo '<td>'. $error[0][2] .'</td>';
-                echo '<td>'. $error[0][3] .'</td>';
-                echo '<td>'. $error[0][4] .'</td>';
-//            echo $error[0][1].' '.$error[0][2].' '.$error[0][3].' '.$error[0][4].'<br>';
+                    echo '<td>'. $item[0][0] .'</td>';
+                    echo '<td>'. $item[0][1] .'</td>';
+                    echo '<td>'. $item[0][11] .'</td>';
+                    echo '<td>'. $item[0][16] .'</td>';
+                    echo '<td>'. $item[0][2] .'</td>';
+                    echo '<td>'. $item[0][3] .'</td>';
+                    echo '<td>'. $item[0][4] .'</td>';
+                    echo '<td>'. $item[0][5] .'</td>';
+                    echo '<td>'. $item[0][14] .'</td>';
+                    echo '<td>'. $item[0][17] .'</td>';
                 echo '</tr>';
             }
             ?>
