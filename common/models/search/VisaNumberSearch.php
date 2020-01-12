@@ -40,7 +40,7 @@ class VisaNumberSearch extends VisaNumber
      */
     public function search($params)
     {
-        $query = VisaNumber::find();
+        $query = VisaNumber::find()->orderBy(['id' => SORT_DESC]);
 
         // add conditions that should always apply here
 
