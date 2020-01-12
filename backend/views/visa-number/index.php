@@ -11,6 +11,10 @@ $this->title = Yii::t('app', 'Visa Numbers');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="visa-number-index">
+    <?= Html::a(
+                    Html::encode($this->title),
+                    ['visa-number/index']
+                ) ?>
 
     <h1><?= Html::encode($this->title) ?></h1>
 

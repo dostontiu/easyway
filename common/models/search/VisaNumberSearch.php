@@ -40,14 +40,14 @@ class VisaNumberSearch extends VisaNumber
      */
     public function search($params)
     {
-        $query = VisaNumber::find()->orderBy(['id' => SORT_DESC]);
+        $query = VisaNumber::find()->orderBy(['id' => SORT_DESC])->groupBy(['p_number']);
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 250,
+                'pageSize' => 50,
             ],
         ]);
 
