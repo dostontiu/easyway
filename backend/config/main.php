@@ -28,6 +28,9 @@ return [
         'import' => [
             'class' => 'app\modules\import\Module',
         ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+        ]
     ],
 
     'components' => [

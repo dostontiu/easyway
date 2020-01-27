@@ -8,6 +8,8 @@ use common\models\search\PilgrimSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use \yii\web\Response;
+use yii\helpers\Html;
 
 /**
  * PilgrimController implements the CRUD actions for Pilgrim model.
@@ -15,7 +17,7 @@ use yii\filters\VerbFilter;
 class PilgrimController extends Controller
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function behaviors()
     {
@@ -23,7 +25,8 @@ class PilgrimController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => ['post'],
+                    'bulk-delete' => ['post'],
                 ],
             ],
         ];
@@ -34,7 +37,7 @@ class PilgrimController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
+    {    
         $searchModel = new PilgrimSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -44,69 +47,269 @@ class PilgrimController extends Controller
         ]);
     }
 
+
     /**
      * Displays a single Pilgrim model.
      * @param integer $id
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+    {   
+        $request = Yii::$app->request;
+        if($request->isAjax){
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return [
+                    'title'=> "Pilgrim #".$id,
+                    'content'=>$this->renderAjax('view', [
+                        'model' => $this->findModel($id),
+                    ]),
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                ];    
+        }else{
+            return $this->render('view', [
+                'model' => $this->findModel($id),
+            ]);
+        }
     }
 
     /**
      * Creates a new Pilgrim model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * For ajax request will return json object
+     * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Pilgrim();
+        $request = Yii::$app->request;
+        $model = new Pilgrim();  
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if($request->isAjax){
+            /*
+            *   Process for ajax request
+            */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if($request->isGet){
+                return [
+                    'title'=> "Create new Pilgrim",
+                    'content'=>$this->renderAjax('create', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+        
+                ];         
+            }else if($model->load($request->post()) && $model->save()){
+                return [
+                    'forceReload'=>'#crud-datatable-pjax',
+                    'title'=> "Create new Pilgrim",
+                    'content'=>'<span class="text-success">Create Pilgrim success</span>',
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                            Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
+        
+                ];         
+            }else{           
+                return [
+                    'title'=> "Create new Pilgrim",
+                    'content'=>$this->renderAjax('create', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+        
+                ];         
+            }
+        }else{
+            /*
+            *   Process for non-ajax request
+            */
+            if ($model->load($request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('create', [
+                    'model' => $model,
+                ]);
+            }
         }
+       
+    }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+    public function actionAdd()
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        $group_id = (!empty($session->get('group'))) ? $session->get('group') : NULL;
+        $user_id = Yii::$app->user->identity["id"];
+        $panel = Malumot::find()->where(['group_id'=>$group_id]);
+
+        $model = new Reader();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $matn = $this->CheckAttr($model->read);
+            $model->group($malumot->group_id);
+
+            $malumot = new Malumot();
+            $malumot->surname = $matn['surname'];
+            $malumot->name = $matn['name'];
+            $malumot->p_number = $matn['p_number'];
+            $malumot->d_birth = $matn['d_birth'];
+            $malumot->gender = $matn['gender'];
+            $malumot->ex_date = $matn['ex_date'];
+            $malumot->is_date = $matn['is_date'];
+            $malumot->group_id = $group_id;
+            $malumot->user_id = $user_id;
+//            $malumot->sent = 0;
+            $malumot->today = date('Y-m-d H:i:s');
+            foreach ($matn['msg'] as $val){$check .= $val;}
+
+            if (!empty($check)) {
+                return $this->render('add', [
+                    'model' => $model,
+                    'panel' => $panel,
+                    'messages' => $matn['msg'],
+                ]);
+            } else {
+                $malumot->save();
+                if (!$malumot->save()) {
+                    return $this->render('add', [
+                        'model' => $model,
+                        'panel' => $panel,
+                        'messages' => $malumot->errors,
+                    ]);
+                } else {
+                    $this->refresh();
+                    return $this->render('add',[
+                        'model' => $model,
+                        'panel' => $panel,
+                        'messages' => 'Successfully!',
+                        //return $this->redirect('add'); ko'ramiz|
+                    ]);
+                }
+            }
+        } else {
+            return $this->render('add', [
+                'model' => $model,
+                'panel' => $panel,
+            ]);
+        }
     }
 
     /**
      * Updates an existing Pilgrim model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * For ajax request will return json object
+     * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $request = Yii::$app->request;
+        $model = $this->findModel($id);       
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if($request->isAjax){
+            /*
+            *   Process for ajax request
+            */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            if($request->isGet){
+                return [
+                    'title'=> "Update Pilgrim #".$id,
+                    'content'=>$this->renderAjax('update', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                ];         
+            }else if($model->load($request->post()) && $model->save()){
+                return [
+                    'forceReload'=>'#crud-datatable-pjax',
+                    'title'=> "Pilgrim #".$id,
+                    'content'=>$this->renderAjax('view', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                            Html::a('Edit',['update','id'=>$id],['class'=>'btn btn-primary','role'=>'modal-remote'])
+                ];    
+            }else{
+                 return [
+                    'title'=> "Update Pilgrim #".$id,
+                    'content'=>$this->renderAjax('update', [
+                        'model' => $model,
+                    ]),
+                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
+                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
+                ];        
+            }
+        }else{
+            /*
+            *   Process for non-ajax request
+            */
+            if ($model->load($request->post()) && $model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            } else {
+                return $this->render('update', [
+                    'model' => $model,
+                ]);
+            }
         }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
-     * Deletes an existing Pilgrim model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Delete an existing Pilgrim model.
+     * For ajax request will return json object
+     * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id)
     {
+        $request = Yii::$app->request;
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        if($request->isAjax){
+            /*
+            *   Process for ajax request
+            */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+        }else{
+            /*
+            *   Process for non-ajax request
+            */
+            return $this->redirect(['index']);
+        }
+
+
+    }
+
+     /**
+     * Delete multiple existing Pilgrim model.
+     * For ajax request will return json object
+     * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionBulkDelete()
+    {        
+        $request = Yii::$app->request;
+        $pks = explode(',', $request->post( 'pks' )); // Array or selected records primary keys
+        foreach ( $pks as $pk ) {
+            $model = $this->findModel($pk);
+            $model->delete();
+        }
+
+        if($request->isAjax){
+            /*
+            *   Process for ajax request
+            */
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+        }else{
+            /*
+            *   Process for non-ajax request
+            */
+            return $this->redirect(['index']);
+        }
+       
     }
 
     /**
@@ -120,8 +323,8 @@ class PilgrimController extends Controller
     {
         if (($model = Pilgrim::findOne($id)) !== null) {
             return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
         }
-
-        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
     }
 }
