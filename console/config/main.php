@@ -20,6 +20,19 @@ return [
             'class' => 'yii\console\controllers\FixtureController',
             'namespace' => 'common\fixtures',
           ],
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+//            'migrationNamespaces' => [
+//                'console\migrations', // Common migrations for the whole application
+//                'yii\rbac\migrations', // Migrations for the specific extension
+//                'mdm\admin\migrations'
+//            ],
+            'migrationPath' => [
+                '@app/migrations',
+                '@yii/rbac/migrations',
+                '@mdm/admin/migrations',
+            ]
+        ],
     ],
     'components' => [
         'authManager' => [

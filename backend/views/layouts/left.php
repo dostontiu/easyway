@@ -5,6 +5,20 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Menu;
 
+$items = [
+    ['label' => '<i class="fa fa-user"></i> Account', 'url' => ['/account']],
+    ['label' => '<i class="fa fa-apple"></i> Airport', 'url' => ['/airport']],
+    ['label' => '<i class="fa fa-apple"></i> Country', 'url' => ['/country']],
+    ['label' => '<i class="fa fa-apple"></i> Flight', 'url' => ['/flight']],
+    ['label' => '<i class="fa fa-apple"></i> Pilgrim', 'url' => ['/pilgrim']],
+    ['label' => '<i class="fa fa-apple"></i> Group', 'url' => ['/group']],
+    ['label' => '<i class="fa fa-apple"></i> Mahram name', 'url' => ['/mahram-name']],
+    ['label' => '<i class="fa fa-apple"></i> Pilgrim type', 'url' => ['/pilgrim-type']],
+    ['label' => '<i class="fa fa-apple"></i> Region', 'url' => ['/region']],
+    ['label' => '<i class="fa fa-apple"></i> Season', 'url' => ['/season']],
+    ['label' => '<i class="fa fa-apple"></i> Visa number', 'url' => ['/visa-number']],
+];
+
 ?>
 <aside class="sidebar">
     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
@@ -48,33 +62,10 @@ use yii\widgets\Menu;
                 </div>
             </div>
             <nav class="sidebar-nav active">
-                <ul id="side-menu" class="in">
-                    <li class="">
-                        <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i
-                                    class="icon-user-following fa-fw"></i> <span class="hide-menu"> Account </span></a>
-                        <ul aria-expanded="true" class="collapse in">
-                            <li class=""><a href="<?= Url::to(['account/view', 'id'=>Yii::$app->user->identity->account->id])?>">View your account</a></li>
-                            <li class=""><a href="<?= Url::to(['account/create'])?>">Edit your account</a></li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i
-                                    class="icon-screen-desktop fa-fw"></i> <span class="hide-menu"> Dashboard <span
-                                        class="label label-rounded label-info pull-right">3</span></span></a>
-                        <ul aria-expanded="true" class="collapse in">
-                            <li><a href="index.html">Modern Version</a></li>
-                            <li class="active"><a href="index2.html" class="active">Clean Version</a></li>
-                            <li><a href="index3.html">Analytical Version</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <hr>
-            <nav class="sidebar-nav active">
-<!--                Tepadagini ruchnoy qilib ishlataman dinamic emas-->
                 <?= Menu::widget([
-                    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id),
-                    'options' => ['class' => '', 'id' => 'side-menu'],
+//                    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id),
+                    'options' => ['class' => ' in ', 'id' => 'side-menu'],
+                    'items' => $items,
                     'encodeLabels' => false, //allows you to use html in labels
                     'linkTemplate' => "<a class='waves-effect' href=\"{url}\">{label}</a>"
                 ]); ?>
