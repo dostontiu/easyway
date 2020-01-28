@@ -136,61 +136,7 @@ class PilgrimController extends Controller
 
     public function actionAdd()
     {
-        $session = Yii::$app->session;
-        $session->open();
-        $group_id = (!empty($session->get('group'))) ? $session->get('group') : NULL;
-        $user_id = Yii::$app->user->identity["id"];
-        $panel = Malumot::find()->where(['group_id'=>$group_id]);
-
-        $model = new Reader();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $matn = $this->CheckAttr($model->read);
-            $model->group($malumot->group_id);
-
-            $malumot = new Malumot();
-            $malumot->surname = $matn['surname'];
-            $malumot->name = $matn['name'];
-            $malumot->p_number = $matn['p_number'];
-            $malumot->d_birth = $matn['d_birth'];
-            $malumot->gender = $matn['gender'];
-            $malumot->ex_date = $matn['ex_date'];
-            $malumot->is_date = $matn['is_date'];
-            $malumot->group_id = $group_id;
-            $malumot->user_id = $user_id;
-//            $malumot->sent = 0;
-            $malumot->today = date('Y-m-d H:i:s');
-            foreach ($matn['msg'] as $val){$check .= $val;}
-
-            if (!empty($check)) {
-                return $this->render('add', [
-                    'model' => $model,
-                    'panel' => $panel,
-                    'messages' => $matn['msg'],
-                ]);
-            } else {
-                $malumot->save();
-                if (!$malumot->save()) {
-                    return $this->render('add', [
-                        'model' => $model,
-                        'panel' => $panel,
-                        'messages' => $malumot->errors,
-                    ]);
-                } else {
-                    $this->refresh();
-                    return $this->render('add',[
-                        'model' => $model,
-                        'panel' => $panel,
-                        'messages' => 'Successfully!',
-                        //return $this->redirect('add'); ko'ramiz|
-                    ]);
-                }
-            }
-        } else {
-            return $this->render('add', [
-                'model' => $model,
-                'panel' => $panel,
-            ]);
-        }
+        return $this->render('add');
     }
 
     /**
