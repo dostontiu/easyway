@@ -2,28 +2,29 @@
 
 namespace common\models\search;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\VisaNumber;
 
 /**
- * VisaNumberSearch represents the model behind the search form of `common\models\VisaNumber`.
+ * VisaNumberSearch represents the model behind the search form about `common\models\VisaNumber`.
  */
 class VisaNumberSearch extends VisaNumber
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'visa'], 'integer'],
-            [['name', 'p_number', 'created_at'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'p_number', 'visa', 'created_at'], 'safe'],
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function scenarios()
     {
@@ -40,15 +41,10 @@ class VisaNumberSearch extends VisaNumber
      */
     public function search($params)
     {
-        $query = VisaNumber::find()->orderBy(['id' => SORT_DESC])->groupBy(['p_number']);
-
-        // add conditions that should always apply here
+        $query = VisaNumber::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 50,
-            ],
         ]);
 
         $this->load($params);
@@ -59,15 +55,14 @@ class VisaNumberSearch extends VisaNumber
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'visa' => $this->visa,
             'created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'p_number', $this->p_number]);
+            ->andFilterWhere(['like', 'p_number', $this->p_number])
+            ->andFilterWhere(['like', 'visa', $this->visa]);
 
         return $dataProvider;
     }
