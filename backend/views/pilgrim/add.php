@@ -10,33 +10,8 @@ $count = 0;
     <div class="row">
         <div class="col-md-7">
             <div class="row">
-                <?php $form = ActiveForm::begin(['id' => 'group', 'action' => ['change-group']]); ?>
-                    <div class="col-md-3 col-sm-6">
-                        <select name="" class="form-control">
-                            <option>1 - Reys</option>
-                            <option>2 - Reys</option>
-                            <option>3 - Reys</option>
-                        </select>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <select name="reys" class="form-control">
-                            <option>Region</option>
-                            <option>Tashkent</option>
-                            <option>Andijan</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 col-sm-6">
-                        <select name="id" class="form-control">
-                            <option value="1"> Group</option>
-                            <option value="1"> Tashkent-1</option>
-                            <option value="1"> Tashkent-2</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 col-sm-6">
-                        <?= Html::submitButton('O\'zgartirish', ['class' => 'btn btn-primary btn-block btn-sm']) ?>
-                        <?php $count_people = 12 ?>
-                    </div>
-                <?php ActiveForm::end(); ?>
+                <?= $this->render('add/_group') ?>
+                <?php $count_people = 12 ?>
             </div>
             <div class="row">
                 <?php $form = ActiveForm::begin(); ?>

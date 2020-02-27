@@ -2,17 +2,18 @@
 
 namespace common\models\search;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\PilgrimType;
 
 /**
- * PilgrimTypeSearch represents the model behind the search form of `common\models\PilgrimType`.
+ * PilgrimTypeSearch represents the model behind the search form about `common\models\PilgrimType`.
  */
 class PilgrimTypeSearch extends PilgrimType
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
@@ -23,7 +24,7 @@ class PilgrimTypeSearch extends PilgrimType
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function scenarios()
     {
@@ -42,8 +43,6 @@ class PilgrimTypeSearch extends PilgrimType
     {
         $query = PilgrimType::find();
 
-        // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -56,7 +55,6 @@ class PilgrimTypeSearch extends PilgrimType
             return $dataProvider;
         }
 
-        // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'role' => $this->role,

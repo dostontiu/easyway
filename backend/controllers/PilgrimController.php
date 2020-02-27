@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\PilgrimType;
 use Yii;
 use common\models\Pilgrim;
 use common\models\search\PilgrimSearch;
@@ -272,5 +273,33 @@ class PilgrimController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionAjaxComment()
+    {
+        $model = new PilgrimType();
+//        if (Yii::$app->request->isAjax) {
+            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                return [
+                    'data' => [
+                        'success' => true,
+                        'model' => $model,
+                        'message' => 'Model has been saved.',
+                    ],
+//                    'code' => 0,
+                ];
+            } else {
+                return [
+                    'data' => [
+                        'success' => false,
+                        'model' => null,
+                        'message' => 'An error occured.',
+                    ],
+//                    'code' => 1, // Some semantic codes that you know them for yourself
+                ];
+            }
+//        }
     }
 }
