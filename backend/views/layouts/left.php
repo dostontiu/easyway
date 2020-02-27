@@ -17,6 +17,7 @@ $items = [
     ['label' => '<i class="fa fa-apple"></i> Region', 'url' => ['/region']],
     ['label' => '<i class="fa fa-apple"></i> Season', 'url' => ['/season']],
     ['label' => '<i class="fa fa-apple"></i> Visa number', 'url' => ['/visa-number']],
+    ['label' => '<i class="fa fa-exchange"></i> Import excel', 'url' => ['/import/excel']],
 ];
 
 ?>

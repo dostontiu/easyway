@@ -1,0 +1,696 @@
+.rasmtek img{
+	width: 150px;
+	height: 180px;
+	transition:0.4s;
+	border-radius: 10px;
+	border: 1px solid #9370DB;
+	float: right;
+	margin: 35px 25px;
+}
+.rasmtek img:hover{
+	transform: scale(1.62);
+	transition:0.4s;
+	border-radius: 7px;
+}
+
+/*-------------list-------------*/
+.ruyhat{
+	border: 1px solid #00BFFF;
+	margin: 10px 0;
+	width: 100%;
+	border-radius: 5px;
+	color: #337ab7;
+	height: 47px;
+}
+.ruyhat img{
+	border-radius: 3px;
+}
+.ruyhat p{
+	font-weight: 600;
+	line-height: 1;
+}
+.list{
+	/*overflow: scroll;*/
+	height: 550px;
+}
+.note{
+	color: red;
+	font-size: 25px;
+	margin: 10px;
+	border: 3px outset green;
+	width: 90%;
+	padding: 10px;
+	background: #ececec;
+	border-radius: 10px;
+	text-align: center;
+	font-weight: 700;
+}
+.soni{
+	/*margin-left: 10px;*/
+	color: rgb(35, 31, 218);
+	font-size: 16px;
+	font-weight: 600;
+	border: 1px solid #00BFFF;
+	padding: 10px;
+	border-radius: 3px;
+	background: #E6E6FA;
+	width: 100%;
+}
+.soni i{
+	color: rgb(30, 60, 150);
+}
+
+/*-----------service.php----------------*/
+
+.tanlash .form-control{
+	font-size: 120%;
+	height: 45px;
+	text-align: center;
+	color: #00b918;
+	font-weight: 600;
+	width: 100%;
+	float: left;
+	cursor: pointer;
+	border-radius: 7px;
+}
+.tanlash .btn-primary{
+	width: 100%;
+	text-align: center;
+	margin: 20px auto;
+	font-weight: 600;
+	padding: 10px;
+	font-size: 20px;
+}
+
+/*------------bejik-----------*/
+.item{
+	position: relative;
+	width: 280px;
+	height: 394px;
+	float: left;
+	overflow: hidden;
+	border: 1px solid #ccc;
+	/* notebookga--->
+	width: 262px;
+	height: 366px;
+	*/
+
+	/*width: 292px;*/
+	/*height: 410px;*/
+
+}
+.photo img{
+	width: 100%;
+	height: 394px;
+}
+.ism, .rasm, .pnumber, .guruh, .arr{
+	position: absolute;
+	/*border: 1px solid yellow;*/
+}
+.ism{
+	top: 130px;
+	right: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 21px;
+	font-weight: 700;
+	line-height: 1.3;
+	font-style: italic;
+	/*letter-spacing: 3px;*/
+}
+.arr{
+	top: 202px;
+	left: 195px;
+	font-size: 11px;
+	color: blue;
+	text-transform: capitalize;
+}
+.guruh{
+	top: 190px;
+	right: 15px;
+	width: 200px;
+	text-align: right;
+	color: red;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 18px;
+	z-index: 1;
+}
+.rasm{
+	bottom: 28px;
+	left: 0px;
+	width: 122px;
+	/*height: 171px;*/
+	overflow: hidden;
+}
+.rasm img{
+	max-height: 180px;
+	width: 122px;
+}
+.pnumber{
+	bottom: 0px;
+	left: -10px;
+	width: 144px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: rgb(0, 143, 255);
+}
+@media print {
+	.pnumber{
+		color: rgb(0, 143, 255) !important;
+	}
+	.guruh{
+		color: red !important;
+	}
+}
+
+/*---------------bagaj----------------*/
+.itembag{
+	position: relative;
+	border: 2px solid #ccc;
+	width: 526px;
+	height: 355px;
+	float: left;
+	overflow: hidden;
+}
+.itembag img{
+	width: 100%;
+	height: 100%;
+}
+.photobag, .pasportbag, .arrbag, .familiyabag, .ismbag, .guruhbag{
+	position: absolute;
+	text-align: center;
+	font-weight: 600;
+	font-family: italic;
+}
+.photobag{
+	left: 0;
+	top: 0;
+	width: 145px;
+	height: 170px;
+	overflow: hidden;
+	border: 1px solid green;
+}
+.photobag img{
+	width: 100%;
+	height: 100%;
+}
+.pasportbag{
+	left: 0;
+	top: 170px;
+	width: 135px;
+	font-size: 22px;
+	font-weight: 700;
+	color: rgb(0, 143, 255);
+}
+.arrbag{
+	left: 0;
+	top: 200px;
+	width: 135px;
+	color: blue;
+	text-transform: capitalize;
+}
+.familiyabag{
+	top: 20px;
+	right: 60px;
+	width: 280px;
+	font-size: 30px;
+	font-weight: 700;
+}
+.ismbag{
+	top: 60px;
+	right: 60px;
+	width: 280px;
+	font-size: 30px;
+	font-weight: 700;
+}
+.guruhbag{
+	top: 110px;
+	right: 60px;
+	width: 280px;
+	font-size: 25px;
+	font-weight: 700;
+	color: red;
+}
+
+
+/*---------------bagajkatta bittalik----------------*/
+.itembag1{
+	position: relative;
+	border: 1px solid #fff;
+	width: 1170px;
+	height: 825px;
+	float: left;
+	overflow: hidden;
+	/*width: 1050px;
+	height: 740px;*/
+}
+.itembag1 img{
+	width: 100%;
+	height: 100%;
+}
+.photobag1, .pasportbag1, .arrbag1, .tel, .familiyabag1,  .guruhbag1{
+	position: absolute;
+	text-align: center;
+	font-weight: 600;
+	font-family: italic;
+}
+.photobag1{
+	left: 3px;
+	bottom: 50px;
+	width: 267px;
+	height: 302px;
+	overflow: hidden;
+}
+.photobag1 img{
+	width: 100%;
+	height: 100%;
+}
+.pasportbag1{
+	left: 3px;
+	bottom: -9px;
+	width: 265px;
+	font-size: 48px;
+	font-weight: 700;
+	color: rgb(0, 143, 255);
+}
+.arrbag1{
+	left: 380px;
+	bottom: 108px;
+	width: 160px;
+	color: blue;
+	font-size: 24px;
+	text-transform: capitalize;
+}
+.tel{
+	right: 90px;
+	bottom: 28px;
+	width: 420px;
+	color: blue;
+	font-size: 50px;
+	font-family: Lucida Handwriting;
+}
+.familiyabag1{
+	top: 272px;
+	/*top: 480px;*/
+	width: 100%;
+	font-size: 87px;
+	/*font-size: 115px;*/
+	font-weight: 700;
+	line-height: 1;
+	/*letter-spacing: 25px;*/
+}
+.guruhbag1{
+	top: 150px;
+	width: 100%;
+	font-size: 85px;
+	font-weight: 900;
+	color: red;
+	/*font-family: Microsoft Sans Serif;*/
+}
+/*----------------------*/
+
+
+
+/*---------------bagnur----------------*/
+.itembagnur{
+	position: relative;
+	border: 1px solid #fff;
+	width: 1170px;
+	height: 825px;
+	float: left;
+	overflow: hidden;
+}
+.itembagnur img{
+	width: 100%;
+	height: 100%;
+}
+.photobagnur, .pasportbagnur, .arrbagnur, .tel, .familiyabagnur,  .guruhbagnur{
+	position: absolute;
+	text-align: center;
+	font-weight: 600;
+	font-family: italic;
+}
+.photobagnur{
+	left: 1px;
+	bottom: 49px;
+	width: 247px;
+	height: 295px;
+	overflow: hidden;
+}
+.photobagnur img{
+	width: 100%;
+	height: 100%;
+}
+.pasportbagnur{
+	left: -2px;
+	bottom: -9px;
+	width: 247px;
+	font-size: 46px;
+	font-weight: 700;
+	color: rgb(0, 143, 255);
+}
+.familiyabagnur{
+	top: 348px;
+	width: 100%;
+	font-size: 95px;
+	font-weight: 700;
+	line-height: 1;
+}
+.guruhbagnur{
+	top: 170px;
+	width: 100%;
+	font-size: 85px;
+	font-weight: 900;
+	color: red;
+	/*font-family: Microsoft Sans Serif;*/
+}
+/*----------------------*/
+.btn-default{
+	position: absolute;
+	top: 10px;
+	right: 31px;
+	padding: 4px 5px;
+	border: none;
+}
+.col-gur{
+	width: 20%;
+	float: left;
+	position: relative;
+	min-height: 1px;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.col-reys{
+	width: 12.5%;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+.dbname >p{
+	position: absolute;
+	right: 0;
+	color: blue;
+}
+
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td {
+    border: 1px solid #000000;
+}
+
+/*---- card ------*/
+.coo{
+	position: absolute;
+	right: 63px;
+	top: -180px;
+}
+
+.card{
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    width: 520px;
+    height: 360px;
+    overflow: hidden;
+    line-height: 20px;
+    font-size: 20px;
+    display:none;
+    background: white;
+}
+.card1{
+    float: left;
+    width: 230px;
+    margin: 15px;
+}
+.card img{
+    width: 230px;
+    height: 230px;
+    border: 1px solid #ececec;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.card i{
+    color: #2154f3;
+}
+.card .dropdown-menu{
+    min-width: 100px;
+}
+.eye{
+    display:block;
+    width:80px;
+    /*position:none;*/
+    float:left;
+    margin-left:0;
+}
+.eye:hover .card{
+    display:block;
+}
+.eye .im>img{
+	width: 140px;
+	max-height: 156px;
+}
+.forread .eye img{
+	max-width: 40px;
+	height: 45.5px;
+}
+.ruyht .table>tbody>tr>td{
+	padding: 57px 10px;
+} 
+
+.id{
+	float: right;
+	color: rgb(134, 16, 243);
+	font-weight: 700;
+}
+.help{
+	border: 1px solid blue;
+	color: red;
+	height: 70px;
+}
+.help td{
+	color: #ec2;
+	width: 50px;
+	border: 1px solid blue;
+}
+
+.for{
+	padding: 5px;
+	font-size: 40px;
+	color: red;
+}
+.ruyhimg{
+	position: relative;
+}
+.ruyhimg img{
+	height: 1600px;
+	width: 1130px;
+}
+.ruyhimg h1{
+	text-align: left;
+	margin: 50px;
+}
+.ruyhnomi{
+	position: absolute;
+	top: 140px;
+	width: 100%;
+	font-weight: 700;
+	font-size: 70px;
+	text-align: center;
+}
+.sana{
+	text-align: left;
+	position: absolute;
+	right: 80px;
+	bottom: -1108px;
+	font-size: 48px;
+	line-height: 2;
+}
+.upper{
+	text-transform: uppercase;
+}
+
+
+
+
+/*sertifikatga*/
+
+.sertif{
+	position: relative;
+	border: 1px solid #fff;
+	width: 1170px;
+	height: 825px;
+	float: left;
+	overflow: hidden;
+}
+
+.sertif img{
+	width: 100%;
+	height: 100%;
+}
+
+.sertif .pasport, .sertif .familiya, .sertif .region, .sertif .date_birth, .sertif .jins{
+	position: absolute;
+	/*text-align: center;*/
+	font-weight: 600;
+	font-family: italic;
+}
+.sertif .pasport{
+	bottom: 131px;
+    left: 236px;
+    font-size: 26px;
+}
+
+.sertif .familiya{
+	top: 94px;
+    left: 200px;
+    font-size: 47px;
+    line-height: 2.1;
+    font-family: Brush Script MT;
+}
+
+.sertif .date_birth{
+	top: 481px;
+    left: 231px;
+    font-size: 33px;
+}
+
+.sertif .region{
+	bottom: 215px;
+    left: 200px;
+    font-size: 30px;
+}
+.sertif .jins{
+	bottom: 380px;
+    left: 200px;
+    font-size: 43px;
+}
+
+
+/*---------------xorazmga----------------*/
+.itembagx{
+	position: relative;
+	border: 1px solid #fff;
+	width: 1170px;
+	height: 825px;
+	float: left;
+	overflow: hidden;
+	/*width: 1050px;
+	height: 740px;*/
+}
+.itembagx img{
+	width: 100%;
+	height: 100%;
+}
+.photobagx, .pasportbagx, .familiyabagx
+{
+	position: absolute;
+	text-align: center;
+	font-weight: 600;
+	font-family: italic;
+}
+.photobagx{
+	left: 30px;
+	bottom: 287px;
+	width: 267px;
+	height: 302px;
+	overflow: hidden;
+}
+.photobagx img{
+	width: 100%;
+	height: 100%;
+}
+.pasportbagx{
+	left: 30px;
+	bottom: 225px;
+	width: 265px;
+	font-size: 48px;
+	font-weight: 700;
+	color: rgb(0, 143, 255);
+}
+.familiyabagx{
+	top: 180px;
+    left: 137px;
+    width: 100%;
+    font-size: 75px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+
+/*------------Toshkent bejik-----------*/
+.itemt{
+	position: relative;
+	width: 280px;
+	height: 394px;
+	float: left;
+	overflow: hidden;
+	border: 1px solid #ccc;
+
+}
+.itemt .photo img{
+	width: 100%;
+	height: 394px;
+}
+.itemt .ism, .itemt .rasm, .itemt .pnumber, .itemt .guruh, .itemt .arr{
+	position: absolute;
+	/*border: 1px solid yellow;*/
+}
+.itemt .ism{
+	top: 130px;
+	right: 0;
+	width: 100%;
+	text-align: center;
+	font-size: 21px;
+	font-weight: 700;
+	line-height: 1.3;
+	font-style: italic;
+	/*letter-spacing: 3px;*/
+}
+.itemt .rasm{
+	bottom: 17px;
+	left: 0px;
+	width: 133px;
+	overflow: hidden;
+}
+.itemt .rasm img{
+	max-height: 180px;
+	width: 133px;
+}
+.itemt .pnumber{
+	bottom: -1px;
+	left: -5px;
+	width: 144px;
+	text-align: center;
+	font-weight: 700;
+	font-size: 13px;
+	/*letter-spacing: 1px;*/
+	color: #FFF;
+	letter-spacing: 3px;
+}
+
+.itemt .guruh{
+	top: 190px;
+	right: 7px;
+	width: 200px;
+	text-align: right;
+	color: red;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 16px;
+	z-index: 1;
+}
+
+@media print {
+   .itemt .pnumber { 
+		bottom: -1px;
+		left: -5px;
+		width: 144px;
+		text-align: center;
+		font-weight: 700;
+		font-size: 13px;
+		/*letter-spacing: 1px;*/
+		color: #FFF !important;
+		letter-spacing: 3px;
+		z-index: 5;
+		 }
+}

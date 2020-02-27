@@ -9,53 +9,49 @@ use yii\web\UploadedFile;
 
 class ExcelController extends Controller
 {
-
-    public function actionIndex()
+    public function actionIndex($name = null)
     {
         ini_set('max_execution_time', 300); //300 seconds = 5 minutes
         $model = new UploadExcel();
         $file = UploadedFile::getInstance($model, 'file');
-        $errors = [];
-//        if (Yii::$app->request->post() && $file != null){
-//            $name = Yii::$app->security->generateRandomString(12).'.'.$file->extension;
-//            Yii::$app->params['uploadPath'] = Yii::$app->basePath . '/web/uploads/excel/';
-//            $path = Yii::$app->params['uploadPath'] . $name;
-//            $file->saveAs($path);
-//
-//            $fileName = $path;
-            $fileName = 'uploads/excel/Jt9YagIhq_U1.xls';
-            try {
-                $inputFileType = \PHPExcel_IOFactory::identify($fileName);
-                $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
-                $objExcel = \PHPExcel_IOFactory::load($fileName);
-            }catch (\Exception $e){
-                die('error');
-            }
-            $sheet = $objExcel->getSheet(0);
-            $highestRow = $sheet->getHighestRow();
-            $highestColumn = $sheet->getHighestColumn();
 
-            $data = [];
-            for ($row=1; $row<=$highestRow; $row++) {
-                $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
-                if ($row == 1) {
-                    continue;
-                }
-//                echo '<pre>';
-//                print_r($this->SeparateExcel($rowData[0]));
-//                die();
+        if ($name){
+            return $this->render('index', ['model' => $model, 'data' =>$this->getExcel($name), 'name' => $name]);
+        }
 
-                $data[] = $this->SeparateExcel($rowData);
-            }
-
-//            pr($errors);
-//        }
-        return $this->render('index', ['model' => $model, 'data' => $data]);
+        if (Yii::$app->request->post() && $file != null){
+            $name = Yii::$app->security->generateRandomString(12).'.'.$file->extension;
+            $path = Yii::$app->basePath . '/web/uploads/excel/' . $name;
+            $file->saveAs($path);
+            return $this->redirect(['excel/index?name='.$name]);
+        }
+        return $this->render('index', ['model' => $model, 'data' => '', 'name' => $name]);
     }
 
-    public function SeparateExcel($rowData = [])
+    public function actionBejik($name)
     {
-        $rowData[1][1] = 'Salom';
-        return $rowData;
+        $this->layout = '@backend/views/layouts/print';
+        return $this->render('bejik', ['data' => $this->getExcel($name)]);
+    }
+
+    public function getExcel($name){
+        $data = [];
+        $fileName = Yii::$app->basePath . '/web/uploads/excel/' . $name;
+        try {
+            $inputFileType = \PHPExcel_IOFactory::identify($fileName);
+            $objReader = \PHPExcel_IOFactory::createReader($inputFileType);
+            $objExcel = \PHPExcel_IOFactory::load($fileName);
+        }catch (\Exception $e){
+            die('error');
+        }
+        $sheet = $objExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+
+        for ($row=1; $row<=$highestRow; $row++) {
+            $rowData = $sheet->rangeToArray('A' . $row . ':' . $highestColumn . $row, null, true, false);
+            $data[] = $rowData;
+        }
+        return $data;
     }
 }
