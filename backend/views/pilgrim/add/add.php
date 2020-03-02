@@ -10,7 +10,7 @@ $count = 0;
     <div class="row">
         <div class="col-md-7">
             <div class="row">
-                <?= $this->render('add/_group') ?>
+                <?= $this->render('_group') ?>
                 <?php $count_people = 12 ?>
             </div>
             <div class="row">

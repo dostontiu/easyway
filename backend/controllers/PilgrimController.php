@@ -137,7 +137,7 @@ class PilgrimController extends Controller
 
     public function actionAdd()
     {
-        return $this->render('add');
+        return $this->render('add/add');
     }
 
     /**

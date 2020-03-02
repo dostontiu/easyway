@@ -14,10 +14,10 @@ $form = ActiveForm::begin([
     ]
 ]);
 ?>
-<?= $form->field($model, 'name'); ?>
-<?= $form->field($model, 'description'); ?>
+<?//= $form->field($model, 'name'); ?>
+<?//= $form->field($model, 'description'); ?>
 
-<?= Html::submitButton("Submit", ['class' => "btn"]); ?>
+<?//= Html::submitButton("Submit", ['class' => "btn"]); ?>
 
 <?php ActiveForm::end(); ?>
 

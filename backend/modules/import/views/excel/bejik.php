@@ -9,7 +9,7 @@ $this->title = 'Импортировать ExcelController';
 //$this->params['breadcrumbs'][] = ['label' => 'V Protocols', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="excel-index container">
+<div class="excel-index">
     <?php foreach ($data as $item) : ?>
         <div class="itemt">
             <div class="ism"><?= $item[0][0].' '.$item[0][1].'<br>'.$item[0][2]; ?></div>
