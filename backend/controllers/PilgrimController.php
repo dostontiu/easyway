@@ -2,10 +2,14 @@
 
 namespace backend\controllers;
 
+use common\models\Group;
+use common\models\MahramName;
 use common\models\PilgrimType;
+use common\models\Region;
 use Yii;
 use common\models\Pilgrim;
 use common\models\search\PilgrimSearch;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -301,5 +305,20 @@ class PilgrimController extends Controller
                 ];
             }
 //        }
+    }
+
+    public function actionVueIndex(){
+        $pilgrims = Pilgrim::find()->all();
+        $regions = Region::find()->select(['id','name'])->asArray()->all();
+        $groups = Group::find()->select(['id','name'])->asArray()->all();
+        $pilgrim_types = PilgrimType::find()->select(['id','name'])->asArray()->all();
+        $mahram_names = MahramName::find()->select(['id','name'])->asArray()->all();
+        return $this->render('vue/index',[
+            'pilgrims' => $pilgrims,
+            'regions' => $regions,
+            'groups' => $groups,
+            'pilgrim_types' => $pilgrim_types,
+            'mahram_names' => $mahram_names,
+        ]);
     }
 }
