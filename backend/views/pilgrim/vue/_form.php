@@ -39,6 +39,16 @@ use yii\helpers\Json;
             <label for="">Mahram id</label>
             <input type="text" class="form-control" v-model="mahram_id">
         </div>
+        <div class="col-md-8">
+            <label for="">Form</label>
+            <textarea class="form-control" rows="5" v-model="p_mrz"></textarea>
+        </div>
+        <div class="col-md-4">
+            <br>
+            <br>
+            <br>
+            <button class="btn btn-success btn-lg p-l-20 p-r-20" type="button" @click="save()"><i class="fa fa-plus"></i></button>
+        </div>
     </div>
 </div>
 </script>
@@ -63,7 +73,18 @@ use yii\helpers\Json;
                 mahram_name_id: '',
                 mahram_id: '',
                 marital_status: '',
+                p_mrz: 'P<UZBISMAILOV<<DASTON<<<<<<<<<<<<<<<<<<<<<<<\n' +
+                    'KA07413416UZB9503146M26020953140395346004466\n',
             }
-        }
+        },
+        methods: {
+            save: function(){
+                // alert(this.region_id)
+                var document = new MRZ.Document(this.p_mrz);
+                var result = document.parse();
+                var res = 'Type: ' + document.type + "\nData:\n" + JSON.stringify(result, null, 2);
+                console.log(result);
+            },
+        },
     });
 </script>
