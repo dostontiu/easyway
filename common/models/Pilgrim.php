@@ -16,7 +16,7 @@ use Yii;
  * @property string $p_number
  * @property string $p_issue_date
  * @property string $p_expiry_date
- * @property int $p_type
+ * @property string $p_type
  * @property string $p_mrz
  * @property int $nationality_id
  * @property int $region_id
@@ -58,10 +58,10 @@ class Pilgrim extends \yii\db\ActiveRecord
         return [
             [['first_name', 'last_name', 'p_number', 'region_id', 'pilgrim_type_id', 'user_id'], 'required'],
             [['birth_date', 'p_issue_date', 'p_expiry_date', 'created_at', 'updated_at'], 'safe'],
-            [['p_type', 'nationality_id', 'region_id', 'marital_status', 'mahram_id', 'mahram_name_id', 'group_id', 'status', 'pilgrim_type_id', 'personal_number', 'user_id'], 'integer'],
+            [['nationality_id', 'region_id', 'marital_status', 'mahram_id', 'mahram_name_id', 'group_id', 'status', 'pilgrim_type_id', 'personal_number', 'user_id'], 'integer'],
             [['first_name', 'last_name', 'middle_name', 'p_mrz'], 'string', 'max' => 255],
             [['p_number'], 'string', 'max' => 32],
-            [['gender'], 'string', 'max' => 10],
+            [['gender', 'p_type'], 'string', 'max' => 10],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'id']],
             [['mahram_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pilgrim::className(), 'targetAttribute' => ['mahram_id' => 'id']],
             [['mahram_name_id'], 'exist', 'skipOnError' => true, 'targetClass' => MahramName::className(), 'targetAttribute' => ['mahram_name_id' => 'id']],
