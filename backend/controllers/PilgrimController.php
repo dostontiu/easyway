@@ -313,12 +313,14 @@ class PilgrimController extends Controller
         $groups = Group::find()->select(['id','name'])->asArray()->all();
         $pilgrim_types = PilgrimType::find()->select(['id','name'])->asArray()->all();
         $mahram_names = MahramName::find()->select(['id','name'])->asArray()->all();
+        $marital_statuses = Pilgrim::marital_statuses;
         return $this->render('vue/index',[
             'pilgrims' => $pilgrims,
             'regions' => $regions,
             'groups' => $groups,
             'pilgrim_types' => $pilgrim_types,
             'mahram_names' => $mahram_names,
+            'marital_statuses' => $marital_statuses,
         ]);
     }
 }

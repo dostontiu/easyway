@@ -42,6 +42,23 @@ use Yii;
  */
 class Pilgrim extends \yii\db\ActiveRecord
 {
+
+    const marital_statuses = [
+        1 => 'Married',
+        2 => 'Single',
+        3 => 'Divorced',
+        4 => 'Widowed',
+        5 => 'Other',
+    ];
+
+    const pilgrim_statuses = [
+        1 => 'Grouped',
+        2 => 'Not grouped',
+        3 => 'Sent',
+        4 => 'Waiting',
+        5 => 'Not accepted',
+    ];
+
     /**
      * {@inheritdoc}
      */
