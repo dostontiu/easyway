@@ -21,6 +21,8 @@ use yii\helpers\Html;
  */
 class PilgrimController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     /**
      * @inheritdoc
      */
@@ -141,7 +143,9 @@ class PilgrimController extends Controller
 
     public function actionAdd()
     {
-        return $this->render('add/add');
+        $raw_data = Yii::$app->request->getRawBody();
+//        return $this->render('add/add');
+        return $raw_data;
     }
 
     /**
