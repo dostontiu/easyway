@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\models\Country;
 use common\models\Group;
 use common\models\MahramName;
 use common\models\PilgrimType;
@@ -10,6 +11,7 @@ use Yii;
 use common\models\Pilgrim;
 use common\models\search\PilgrimSearch;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -143,9 +145,14 @@ class PilgrimController extends Controller
 
     public function actionAdd()
     {
-        $raw_data = Yii::$app->request->getRawBody();
-//        return $this->render('add/add');
-        return $raw_data;
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $raw_data = Yii::$app->request->post();
+        $model = new Pilgrim();
+        if ($model->load($raw_data) && $model->save()){
+            return ['success' => true];
+        } else {
+            return ['success' => false, 'errors' => $model->getErrors()];
+        }
     }
 
     /**
@@ -318,6 +325,7 @@ class PilgrimController extends Controller
         $pilgrim_types = PilgrimType::find()->select(['id','name'])->asArray()->all();
         $mahram_names = MahramName::find()->select(['id','name'])->asArray()->all();
         $marital_statuses = Pilgrim::marital_statuses;
+        $countries = Country::find()->asArray()->all();
         return $this->render('vue/index',[
             'pilgrims' => $pilgrims,
             'regions' => $regions,
@@ -325,6 +333,7 @@ class PilgrimController extends Controller
             'pilgrim_types' => $pilgrim_types,
             'mahram_names' => $mahram_names,
             'marital_statuses' => $marital_statuses,
+            'countries' => $countries,
         ]);
     }
 }

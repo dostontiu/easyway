@@ -17,43 +17,43 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-4">
             <label for="">Region</label>
-            <select class="form-control" v-model="region_id">
+            <select class="form-control" v-model="pilgrim.region_id">
                 <option v-for="region in regions" v-bind:value="region.id">{{ region.name }}</option>
             </select>
         </div>
         <div class="col-md-4">
             <label for="">Group</label>
-            <select class="form-control" v-model="group_id">
+            <select class="form-control" v-model="pilgrim.group_id">
                 <option v-for="group in groups" v-bind:value="group.id">{{ group.name }}</option>
             </select>
         </div>
         <div class="col-md-4">
             <label for="">Pilgrim type</label>
-            <select class="form-control" v-model="pilgrim_type_id">
+            <select class="form-control" v-model="pilgrim.pilgrim_type_id">
                 <option v-for="pilgrim_type in pilgrim_types" v-bind:value="pilgrim_type.id">{{ pilgrim_type.name }}</option>
             </select>
         </div>
         <div class="col-md-4">
             <label for="">Marital status</label>
-            <select class="form-control" v-model="marital_status">
+            <select class="form-control" v-model="pilgrim.marital_status">
                 <option v-for="(item, key) in marital_statuses" v-bind:value="key">{{ item }}</option>
             </select>
         </div>
         <div class="col-md-4">
             <label for="">Mahram</label>
-            <select class="form-control" v-model="mahram_id">
+            <select class="form-control" v-model="pilgrim.mahram_id">
                 <option v-for="(item, key) in mahram_pilgrims" v-bind:value="key">{{ item }}</option>
             </select>
         </div>
         <div class="col-md-4">
             <label for="">Mahram name</label>
-            <select class="form-control" v-model="mahram_name_id">
+            <select class="form-control" v-model="pilgrim.mahram_name_id">
                 <option v-for="mahram_name in mahram_names" v-bind:value="mahram_name.id">{{ mahram_name.name }}</option>
             </select>
         </div>
         <div class="col-md-8">
             <label for="">Form</label>
-            <textarea class="form-control" rows="5" v-model="p_mrz"></textarea>
+            <textarea class="form-control" rows="5" v-model="pilgrim.p_mrz"></textarea>
         </div>
         <div class="col-md-4">
             <br>
@@ -78,67 +78,54 @@ use yii\helpers\Url;
                 pilgrim_types: <?= Json::encode($pilgrim_types)?>,
                 mahram_pilgrims : <?= Json::encode(ArrayHelper::map($pilgrims, 'id', 'first_name'))?>,
                 mahram_names: <?= Json::encode($mahram_names)?>,
+                countries: <?= Json::encode($countries)?>,
                 marital_statuses: <?= Json::encode($marital_statuses)?>,
-                region_id: '',
-                group_id: '',
-                pilgrim_type_id: 1,
-                mahram_name_id: '',
-                mahram_id: null,
-                marital_status: 1,
-                p_mrz: 'P<UZBISMAILOV<<DASTON<<<<<<<<<<<<<<<<<<<<<<<\n' +
-                    'KA07413416UZB9503146M26020953140395346004466\n',
                 validateErrMsg: '',
-                first_name: '',
-                last_name: '',
-                middle_name: '',
-                birth_date: '',
-                gender: '',
-                p_number: '',
-                p_issue_date: '',
-                p_expiry_date: '',
-                p_type: '',
-                nationality_id: '',
-                status: 1,
-                personal_number: '',
-                user_id: <?= Yii::$app->user->id?>,
+                pilgrim: { // 20 ta
+                    region_id: '',
+                    group_id: '',
+                    pilgrim_type_id: 1,
+                    mahram_name_id: '',
+                    mahram_id: null,
+                    marital_status: 1,
+                    p_mrz: 'P<UZBISMAILOV<<DASTON<<<<<<<<<<<<<<<<<<<<<<<\n' +
+                        'KA07413416UZB9503146M26020953140395346004466\n',
+                    first_name: '',
+                    last_name: '',
+                    middle_name: '',
+                    birth_date: '',
+                    gender: '',
+                    p_number: '',
+                    p_issue_date: '',
+                    p_expiry_date: '',
+                    p_type: '',
+                    nationality_id: '',
+                    personal_number: '',
+                    status: 1,
+                    user_id: <?= Yii::$app->user->id?>,
+                },
             }
         },
         methods: {
             save: function(){
-                let document = new MRZ.Document(this.p_mrz).parse();
+                let document = new MRZ.Document(this.pilgrim.p_mrz).parse();
 
                 if (this.validate(document)){
                     axios.post('<?= Url::to(['add']) ?>', {
-                        first_name: this.first_name,
-                        last_name: this.last_name,
-                        middle_name: this.middle_name,
-                        birth_date: this.birth_date,
-                        gender: this.gender,
-                        p_number: this.p_number,
-                        p_expiry_date: this.p_expiry_date,
-                        p_issue_date: this.p_issue_date,
-                        p_type: this.p_type,
-                        personal_number: this.personal_number,
-                        nationality_id: this.nationality_id,
-
-                        region_id: this.region_id,
-                        group_id: this.group_id,
-                        pilgrim_type_id: this.pilgrim_type_id,
-                        mahram_name_id: this.mahram_name_id,
-                        mahram_id: this.mahram_id,
-                        marital_status: this.marital_status,
-                        status: this.status,
-                        user_id: this.user_id,
-
+                        Pilgrim: this.pilgrim
                     })
                         .then(function (response) {
-                            console.log(response);
+                            if (response.success === true){
+                                alert('Added successfully!');
+                            } else {
+                                alert('Error');
+                            }
                         })
                         .catch(function (error) {
                             console.log(error);
                         });
                 } else {
-                    console.log(this.validateErrMsg)
+                    console.log(this.validateErrMsg);
                     alert('not sent')
                 }
             },
@@ -148,17 +135,16 @@ use yii\helpers\Url;
                 let onlyLetters = /^[A-Za-z]+$/;
                 let onlyNumbers = /^[0-9]+$/;
 
-                this.first_name = document.first_name;
-                this.last_name = document.last_name;
-                this.middle_name = document.second_last_name;
-                this.birth_date = document.birth_date;
-                this.gender = document.gender;
-                this.p_number = document.document_number;
-                this.p_expiry_date = document.document_expiry;
-                this.p_type = document.document_type;
-                this.personal_number = document.personal_number;
-                this.nationality_id = document.nationality; // @todo
-                this.p_issue_date = this.get_issue_date(document); // @todo
+                this.pilgrim.first_name = document.first_name;
+                this.pilgrim.last_name = document.last_name;
+                this.pilgrim.middle_name = document.second_last_name;
+                this.pilgrim.birth_date = document.birth_date;
+                this.pilgrim.gender = document.gender;
+                this.pilgrim.p_number = document.document_number;
+                this.pilgrim.p_expiry_date = document.document_expiry;
+                this.pilgrim.p_type = document.document_type;
+                this.pilgrim.personal_number = document.personal_number;
+                this.pilgrim.p_issue_date = this.get_issue_date(document); // @todo
 
                 if (document.valid){
                     if (!document.valid.document_number){
@@ -203,36 +189,40 @@ use yii\helpers\Url;
                     valid = false;
                 }
 
-                if (!this.region_id){
+                if (!this.pilgrim.region_id){
                     errMsg = errMsg.concat('Region ni tanlang\n');
                     valid = false;
                 }
-                if (!this.group_id){
+                if (!this.pilgrim.group_id){
                     errMsg = errMsg.concat('Group ni tanlang\n');
                     valid = false;
                 }
-                if (!this.pilgrim_type_id){
+                if (!this.pilgrim.pilgrim_type_id){
                     errMsg = errMsg.concat('Pilgrim type ni tanlang\n');
                     valid = false;
                 }
-                if (!this.marital_status){
+                if (!this.pilgrim.marital_status){
                     errMsg = errMsg.concat('marital_status ni tanlang\n');
                     valid = false;
                 }
-                if (!this.status){
+                if (!this.pilgrim.status){
                     errMsg = errMsg.concat('status ni tanlang\n');
                     valid = false;
                 }
-                if (!this.p_mrz){
+                if (!this.pilgrim.p_mrz){
                     errMsg = errMsg.concat('p_mrz ni tanlang\n');
                     valid = false;
                 }
-                if (!this.mahram_name_id){
+                if (!this.pilgrim.mahram_name_id){
                     errMsg = errMsg.concat('Mahram name ni tanlang\n');
                     valid = false;
                 }
-                if (!this.mahram_id){
+                if (!this.pilgrim.mahram_id){
                     errMsg = errMsg.concat('mahram_id ni tanlang\n');
+                    valid = false;
+                }
+                if (!this.get_nationality_id(document.nationality)){
+                    errMsg = document.nationality + ' country doesn\'t found\n';
                     valid = false;
                 }
 
@@ -251,18 +241,28 @@ use yii\helpers\Url;
                     return p_issue_date.toLocaleDateString();
                 }
             },
+            get_nationality_id: function (nationality) {
+                let valid = false;
+                for (let i = 0; i < this.countries.length; i++){
+                    if (this.countries[i].code === nationality){
+                        this.pilgrim.nationality_id = this.countries[i].id;
+                        valid = true;
+                    }
+                }
+                return valid;
+            },
         },
         mounted(){
 
         },
         watch:{
 
-            'region_id':{
-                handler(newValue,oldValue){
-                    // debugger
-
-                }
-            }
+            // 'region_id':{
+            //     handler(newValue,oldValue){
+            //         // debugger
+            //
+            //     }
+            // }
 
         }
     });
