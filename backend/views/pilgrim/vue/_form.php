@@ -115,7 +115,7 @@ use yii\helpers\Url;
                         Pilgrim: this.pilgrim
                     })
                         .then(function (response) {
-                            if (response.success === true){
+                            if (response.data.success === true){
                                 alert('Added successfully!');
                             } else {
                                 alert('Error');
