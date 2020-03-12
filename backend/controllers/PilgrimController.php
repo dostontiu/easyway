@@ -221,6 +221,12 @@ class PilgrimController extends Controller
        
     }
 
+    public function actionRemovePilgrim()
+    {
+        $id = Yii::$app->request->post('id');
+        return $this->findModel($id)->delete();
+    }
+
     /**
      * Finds the Pilgrim model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -263,8 +269,7 @@ class PilgrimController extends Controller
     public function actionLoadGroups($flight_id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $groups = Group::find()->select(['id','name'])->where(['flight_id' => $flight_id])->asArray()->all();
-        return $groups;
+        return Group::find()->select(['id','name'])->where(['flight_id' => $flight_id])->asArray()->all();
     }
 
 }
