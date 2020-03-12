@@ -149,7 +149,7 @@ class PilgrimController extends Controller
         $raw_data = Yii::$app->request->post();
         $model = new Pilgrim();
         if ($model->load($raw_data) && $model->save()){
-            return ['success' => true];
+            return ['success' => true, 'model' => $model];
         } else {
             return ['success' => false, 'errors' => $model->getErrors()];
         }
@@ -318,7 +318,8 @@ class PilgrimController extends Controller
 //        }
     }
 
-    public function actionVueIndex(){
+    public function actionVueIndex()
+    {
         $pilgrims = Pilgrim::find()->all();
         $regions = Region::find()->select(['id','name'])->asArray()->all();
         $groups = Group::find()->select(['id','name'])->asArray()->all();

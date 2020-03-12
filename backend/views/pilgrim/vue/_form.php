@@ -16,6 +16,15 @@ use yii\helpers\Url;
 <div class="">
     <div class="row">
         <div class="col-md-4">
+            <label for="">Reys</label>
+            <select class="form-control">
+                <option >1-reys</option>
+                <option >2-reys</option>
+                <option >3-reys</option>
+                <option >4-reys</option>
+            </select>
+        </div>
+        <div class="col-md-4">
             <label for="">Region</label>
             <select class="form-control" v-model="pilgrim.region_id">
                 <option v-for="region in regions" v-bind:value="region.id">{{ region.name }}</option>
@@ -45,21 +54,26 @@ use yii\helpers\Url;
                 <option v-for="(item, key) in mahram_pilgrims" v-bind:value="key">{{ item }}</option>
             </select>
         </div>
+        <div class="col-md-6">
+            <label for="">Form</label>
+            <textarea class="form-control" rows="3" v-model="pilgrim.p_mrz"></textarea>
+        </div>
+        <div class="col-md-1">
+            <br>
+            <br>
+            <button class="btn btn-success btn-lg p-l-20 p-r-20" type="button" @click="save()"><i class="fa fa-plus"></i></button>
+        </div>
+        <div class="col-md-1">
+            <br>
+            <label for="autosave">Auto save</label><br>
+            <input name="autosave" type="checkbox" checked="" class="js-switch" data-color="#13dafe" style="display: none;" data-switchery="true">
+            <span class="switchery switchery-default" style="background-color: rgb(19, 218, 254); border-color: rgb(19, 218, 254); box-shadow: rgb(19, 218, 254) 0px 0px 0px 16px inset; transition: border 0.4s ease 0s, box-shadow 0.4s ease 0s, background-color 1.2s ease 0s;"><small style="left: 20px; transition: background-color 0.4s ease 0s, left 0.2s ease 0s; background-color: rgb(255, 255, 255);"></small></span>
+        </div>
         <div class="col-md-4">
             <label for="">Mahram name</label>
             <select class="form-control" v-model="pilgrim.mahram_name_id">
                 <option v-for="mahram_name in mahram_names" v-bind:value="mahram_name.id">{{ mahram_name.name }}</option>
             </select>
-        </div>
-        <div class="col-md-8">
-            <label for="">Form</label>
-            <textarea class="form-control" rows="5" v-model="pilgrim.p_mrz"></textarea>
-        </div>
-        <div class="col-md-4">
-            <br>
-            <br>
-            <br>
-            <button class="btn btn-success btn-lg p-l-20 p-r-20" type="button" @click="save()"><i class="fa fa-plus"></i></button>
         </div>
     </div>
 </div>
@@ -110,12 +124,14 @@ use yii\helpers\Url;
             save: function(){
                 let document = new MRZ.Document(this.pilgrim.p_mrz).parse();
 
+                let parents = this.$parent.pilgrims;
                 if (this.validate(document)){
                     axios.post('<?= Url::to(['add']) ?>', {
                         Pilgrim: this.pilgrim
                     })
                         .then(function (response) {
                             if (response.data.success === true){
+                                parents.push(response.data.model);
                                 alert('Added successfully!');
                             } else {
                                 alert('Error');

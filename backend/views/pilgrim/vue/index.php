@@ -6,6 +6,8 @@ use yii\web\View;
 $this->registerJsFile(Yii::getAlias('@web') . '/js/vue.js', ['position' => View::POS_HEAD]);
 $this->registerJsFile(Yii::getAlias('@web') . '/js/mrz-reader.js', ['position' => View::POS_HEAD]);
 $this->registerJsFile(Yii::getAlias('@web') . '/js/axios.min.js', ['position' => View::POS_HEAD]);
+$this->registerJsFile(Yii::getAlias('@web') . '/plugins/components/switchery/dist/switchery.min.js', ['position' => View::POS_HEAD]);
+$this->registerCssFile(Yii::getAlias('@web') . '/plugins/components/switchery/dist/switchery.min.css', ['position' => View::POS_HEAD]);
 
 require_once '_form.php';
 
