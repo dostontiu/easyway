@@ -10,6 +10,7 @@ use yii\helpers\Url;
 /* @var $pilgrims common\models\Pilgrim */
 /* @var $mahram_names common\models\MahramName */
 /* @var $marital_statuses array */
+/* @var $flights common\models\Flight */
 ?>
 
 <script type="text/x-template" id="pilgrim-vue-form">
@@ -17,11 +18,8 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-md-4">
             <label for="">Reys</label>
-            <select class="form-control">
-                <option >1-reys</option>
-                <option >2-reys</option>
-                <option >3-reys</option>
-                <option >4-reys</option>
+            <select @change="getGroups(flight_id)" class="form-control" v-model="flight_id">
+                <option v-for="flight in flights" v-bind:value="flight.id">{{ flight.name }}</option>
             </select>
         </div>
         <div class="col-md-4">
@@ -76,6 +74,7 @@ use yii\helpers\Url;
             </select>
         </div>
     </div>
+    {{groups}}
 </div>
 </script>
 
@@ -94,6 +93,8 @@ use yii\helpers\Url;
                 mahram_names: <?= Json::encode($mahram_names)?>,
                 countries: <?= Json::encode($countries)?>,
                 marital_statuses: <?= Json::encode($marital_statuses)?>,
+                flights: <?= Json::encode($flights)?>,
+                flight_id: '',
                 validateErrMsg: '',
                 pilgrim: { // 20 ta
                     region_id: '',
@@ -126,7 +127,7 @@ use yii\helpers\Url;
 
                 let parents = this.$parent.pilgrims;
                 if (this.validate(document)){
-                    axios.post('<?= Url::to(['add']) ?>', {
+                    axios.post('<?= Url::to(['create']) ?>', {
                         Pilgrim: this.pilgrim
                     })
                         .then(function (response) {
@@ -254,7 +255,13 @@ use yii\helpers\Url;
                 if (document.document_issue){
                     return document.document_issue;
                 } else {
-                    return p_issue_date.toLocaleDateString();
+                    if (month.length == 1) {
+                        month = "0" + month;
+                    }
+                    if (day.length == 1) {
+                        day = "0" + day;
+                    }
+                    return year + "-" + month + "-" + day;
                 }
             },
             get_nationality_id: function (nationality) {
@@ -267,6 +274,9 @@ use yii\helpers\Url;
                 }
                 return valid;
             },
+            getGroups: function(flight_id) {
+                axios.get("<?= Url::to(['load-groups']) ?>", { params:{flight_id: flight_id} }).then(response => this.groups = response.data);
+            }
         },
         mounted(){
 

@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use yii\widgets\Menu;
 
 $items = [
+    ['label' => '<i class="fa fa-user"></i> Add pilgrim', 'url' => ['/pilgrim/vue-index']],
     ['label' => '<i class="fa fa-user"></i> Account', 'url' => ['/account']],
     ['label' => '<i class="fa fa-apple"></i> Airport', 'url' => ['/airport']],
     ['label' => '<i class="fa fa-apple"></i> Country', 'url' => ['/country']],

@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Country;
+use common\models\Flight;
 use common\models\Group;
 use common\models\MahramName;
 use common\models\PilgrimType;
@@ -88,62 +89,8 @@ class PilgrimController extends Controller
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+
     public function actionCreate()
-    {
-        $request = Yii::$app->request;
-        $model = new Pilgrim();  
-
-        if($request->isAjax){
-            /*
-            *   Process for ajax request
-            */
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            if($request->isGet){
-                return [
-                    'title'=> "Create new Pilgrim",
-                    'content'=>$this->renderAjax('create', [
-                        'model' => $model,
-                    ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-        
-                ];         
-            }else if($model->load($request->post()) && $model->save()){
-                return [
-                    'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Create new Pilgrim",
-                    'content'=>'<span class="text-success">Create Pilgrim success</span>',
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                            Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
-        
-                ];         
-            }else{           
-                return [
-                    'title'=> "Create new Pilgrim",
-                    'content'=>$this->renderAjax('create', [
-                        'model' => $model,
-                    ]),
-                    'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
-                                Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
-        
-                ];         
-            }
-        }else{
-            /*
-            *   Process for non-ajax request
-            */
-            if ($model->load($request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                return $this->render('create', [
-                    'model' => $model,
-                ]);
-            }
-        }
-       
-    }
-
-    public function actionAdd()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $raw_data = Yii::$app->request->post();
@@ -290,34 +237,6 @@ class PilgrimController extends Controller
         }
     }
 
-    public function actionAjaxComment()
-    {
-        $model = new PilgrimType();
-//        if (Yii::$app->request->isAjax) {
-            Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
-                return [
-                    'data' => [
-                        'success' => true,
-                        'model' => $model,
-                        'message' => 'Model has been saved.',
-                    ],
-//                    'code' => 0,
-                ];
-            } else {
-                return [
-                    'data' => [
-                        'success' => false,
-                        'model' => null,
-                        'message' => 'An error occured.',
-                    ],
-//                    'code' => 1, // Some semantic codes that you know them for yourself
-                ];
-            }
-//        }
-    }
-
     public function actionVueIndex()
     {
         $pilgrims = Pilgrim::find()->all();
@@ -327,6 +246,8 @@ class PilgrimController extends Controller
         $mahram_names = MahramName::find()->select(['id','name'])->asArray()->all();
         $marital_statuses = Pilgrim::marital_statuses;
         $countries = Country::find()->asArray()->all();
+        $flights = Flight::find()->asArray()->all();
+
         return $this->render('vue/index',[
             'pilgrims' => $pilgrims,
             'regions' => $regions,
@@ -335,6 +256,15 @@ class PilgrimController extends Controller
             'mahram_names' => $mahram_names,
             'marital_statuses' => $marital_statuses,
             'countries' => $countries,
+            'flights' => $flights,
         ]);
     }
+
+    public function actionLoadGroups($flight_id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $groups = Group::find()->select(['id','name'])->where(['flight_id' => $flight_id])->asArray()->all();
+        return $groups;
+    }
+
 }
