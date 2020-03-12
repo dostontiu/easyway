@@ -74,7 +74,6 @@ use yii\helpers\Url;
             </select>
         </div>
     </div>
-    {{groups}}
 </div>
 </script>
 
