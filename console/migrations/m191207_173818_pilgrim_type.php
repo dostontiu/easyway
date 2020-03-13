@@ -15,7 +15,7 @@ class m191207_173818_pilgrim_type extends Migration
         $this->createTable('pilgrim_type', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'description' => $this->string()->notNull(),
+            'description' => $this->string()->null(),
             'role' => $this->integer()->null(),
         ]);
     }

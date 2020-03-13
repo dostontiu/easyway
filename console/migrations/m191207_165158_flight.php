@@ -25,13 +25,13 @@ class m191207_165158_flight extends Migration
         ]);
 
         $this->createIndex('idx-flight-arrival_airport_id', 'flight', 'arrival_airport_id');
-        $this->addForeignKey('fk-flight-arrival_airport_id', 'flight', 'arrival_airport_id', 'airport', 'id', 'CASCADE');
+        $this->addForeignKey('fk-flight-arrival_airport_id', 'flight', 'arrival_airport_id', 'airport', 'id', 'RESTRICT');
 
         $this->createIndex('idx-flight-depart_airport_id', 'flight', 'depart_airport_id');
-        $this->addForeignKey('fk-flight-depart_airport_id', 'flight', 'depart_airport_id', 'airport', 'id', 'CASCADE');
+        $this->addForeignKey('fk-flight-depart_airport_id', 'flight', 'depart_airport_id', 'airport', 'id', 'RESTRICT');
 
         $this->createIndex('idx-flight-season_id', 'flight', 'season_id');
-        $this->addForeignKey('fk-flight-season_id', 'flight', 'season_id', 'season', 'id', 'CASCADE');
+        $this->addForeignKey('fk-flight-season_id', 'flight', 'season_id', 'season', 'id', 'RESTRICT');
     }
 
     /**

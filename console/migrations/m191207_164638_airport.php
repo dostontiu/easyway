@@ -22,7 +22,7 @@ class m191207_164638_airport extends Migration
         ]);
 
         $this->createIndex('idx-airport-region_id', 'airport', 'region_id');
-        $this->addForeignKey('fk-airport-region_id', 'airport', 'region_id', 'region', 'id', 'CASCADE');
+        $this->addForeignKey('fk-airport-region_id', 'airport', 'region_id', 'region', 'id', 'RESTRICT');
     }
 
     /**

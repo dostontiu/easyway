@@ -23,7 +23,7 @@ class m191207_163919_region extends Migration
         ]);
 
         $this->createIndex('idx-region-country_id', 'region', 'country_id');
-        $this->addForeignKey('fk-region-country_id', 'region', 'country_id', 'country', 'id', 'CASCADE');
+        $this->addForeignKey('fk-region-country_id', 'region', 'country_id', 'country', 'id', 'RESTRICT');
     }
 
     /**

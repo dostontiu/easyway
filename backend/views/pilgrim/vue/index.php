@@ -63,12 +63,16 @@ require_once '_form.php';
                                 pilgrims.splice(i, 1); // Removed successfully
                             } else {
                                 console.log(response);
+                                console.log('error1');
                                 alert('Error1');
                             }
                         })
                         .catch(function (error) {
-                            console.log(error);
-                            alert('Error2');
+                            if (error.response.status == 500){
+                                alert('Bu ziyoratchiga mahrami bo\'g\'langan');
+                            } else {
+                                alert('Another error');
+                            }
                         });
                 }
             }
