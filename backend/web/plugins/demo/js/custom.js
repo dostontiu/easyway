@@ -154,18 +154,6 @@ $(function() {
     });
 }(jQuery, window, document));
 
-/* ========== Tooltip Initialization ========== */
-
-$(function() {
-    $('[data-toggle="tooltip"]').tooltip();
-});
-
-/* ========== Popover Initialization ========== */
-
-$(function() {
-    $('[data-toggle="popover"]').popover();
-});
-
 /* ========== Login and Recover Password ========== */
 
 $('#to-recover').on("click", function() {
