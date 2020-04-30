@@ -24,13 +24,13 @@ use yii\helpers\Url;
         </div>
         <div class="col-md-4">
             <label for="">Region</label>
-            <select class="form-control" v-model="pilgrim.region_id">
+            <select @change="changeRegion(pilgrim.region_id)" class="form-control" v-model="pilgrim.region_id">
                 <option v-for="region in regions" v-bind:value="region.id">{{ region.name }}</option>
             </select>
         </div>
         <div class="col-md-4">
             <label for="">Group</label>
-            <select class="form-control" v-model="pilgrim.group_id">
+            <select @change="changeGroup(pilgrim.group_id)" class="form-control" v-model="pilgrim.group_id">
                 <option v-for="group in groups" v-bind:value="group.id">{{ group.name }}</option>
             </select>
         </div>
@@ -125,6 +125,14 @@ use yii\helpers\Url;
                 },
             }
         },
+
+        created: function(){
+            this.flight_id = "<?= $_SESSION['flight_id'] ?? '' ?>";
+            // this.getGroups(this.flight_id);
+            this.pilgrim.region_id = "<?= $_SESSION['region_id'] ?? '' ?>";
+            this.pilgrim.group_id = "<?= $_SESSION['group_id'] ?? '' ?>";
+        },
+
         methods: {
             save: function(){
                 let document = new MRZ.Document(this.pilgrim.p_mrz).parse();
@@ -295,6 +303,8 @@ use yii\helpers\Url;
             },
             getGroups: function(flight_id) {
                 axios.get("<?= Url::to(['load-groups']) ?>", { params:{flight_id: flight_id} }).then(response => this.groups = response.data);
+                this.setSession('flight_id', flight_id);
+                this.removeSession({names: ['region_id', 'group_id']})
             },
             calculateAge: function(birthday) { // birthday is a date
                 let ageDifMs = Date.now() - new Date(birthday).getTime();
@@ -322,6 +332,24 @@ use yii\helpers\Url;
                 this.pilgrim.personal_number = '';
                 this.pilgrim.status = 1;
                 this.pilgrim.user_id = <?= Yii::$app->user->id?>;
+            },
+            setSession: function (name, value) {
+                axios.get("<?= Url::to(['set-session']) ?>", { params:{name: name, value: value} }).then(function (response) {
+                    // console.log(response);
+                });
+            },
+            changeRegion: function(region_id) {
+                this.setSession('region_id', region_id);
+            },
+            changeGroup: function(group_id) {
+                this.setSession('group_id', group_id);
+            },
+            removeSession(names){
+                axios.get("<?= Url::to(['remove-session']) ?>", { params:{names: names} }).then(function (response) {
+                    // console.log(names);
+                });
+                this.pilgrim.region_id = '';
+                this.pilgrim.group_id = '';
             }
         },
         mounted(){

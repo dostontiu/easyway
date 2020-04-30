@@ -272,4 +272,27 @@ class PilgrimController extends Controller
         return Group::find()->select(['id','name'])->where(['flight_id' => $flight_id])->asArray()->all();
     }
 
+    public function actionSetSession($name, $value)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $session = Yii::$app->session;
+        $session->set($name, $value);
+
+        return $session->get($name);
+    }
+
+    public function actionRemoveSession($names)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $names = Json::decode($names)['names'];
+        $session = Yii::$app->session;
+        foreach ($names as $name) {
+            $session->remove($name);
+        }
+
+        return true;
+    }
+
 }
