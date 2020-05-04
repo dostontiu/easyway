@@ -12,6 +12,9 @@ use common\models\Pilgrim;
  */
 class PilgrimSearch extends Pilgrim
 {
+
+    public $fullName;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +22,7 @@ class PilgrimSearch extends Pilgrim
     {
         return [
             [['id', 'nationality_id', 'region_id', 'mahram_id', 'mahram_name_id', 'group_id', 'pilgrim_type_id', 'personal_number', 'user_id'], 'integer'],
-            [['first_name', 'last_name', 'middle_name', 'birth_date', 'gender', 'p_number', 'p_issue_date', 'p_expiry_date', 'p_type', 'p_mrz', 'marital_status', 'status', 'created_at', 'updated_at'], 'safe'],
+            [['fullName', 'first_name', 'last_name', 'middle_name', 'birth_date', 'gender', 'p_number', 'p_issue_date', 'p_expiry_date', 'p_type', 'p_mrz', 'marital_status', 'status', 'created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -42,24 +45,54 @@ class PilgrimSearch extends Pilgrim
     public function search($params)
     {
         $query = Pilgrim::find();
-
+//            ->select(['pilgrim.*',
+//                new \yii\db\Expression("CONCAT(`first_name`, ' ', `last_name`, ' ', `middle_name`) as full_name"),
+//            ]);
+        $query->joinWith(['mahramName', 'pilgrimType', 'group']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
-        $this->load($params);
+        $dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'fullName' => [
+                    'asc' => ['first_name' => SORT_ASC, 'last_name' => SORT_ASC, 'middle_name' => SORT_ASC],
+                    'desc' => ['first_name' => SORT_DESC, 'last_name' => SORT_DESC, 'middle_name' => SORT_DESC],
+                    'label' => 'Full Name',
+                    'default' => SORT_ASC
+                ],
+                'first_name',
+                'last_name',
+                'middle_name',
+                'birth_date',
+                'gender',
+                'p_number',
+                'p_issue_date',
+                'p_expiry_date',
+                'p_type',
+                'p_mrz',
+                'nationality_id',
+                'region_id',
+                'marital_status',
+                'mahram_id',
+                'mahram_name_id',
+                'group_id',
+                'status',
+                'pilgrim_type_id',
+                'personal_number',
+                'user_id',
+                'created_at',
+                'updated_at',
+            ]
+        ]);
 
-        if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+        if (!($this->load($params) && $this->validate())) {
             return $dataProvider;
         }
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'birth_date' => $this->birth_date,
-            'p_issue_date' => $this->p_issue_date,
-            'p_expiry_date' => $this->p_expiry_date,
             'nationality_id' => $this->nationality_id,
             'region_id' => $this->region_id,
             'mahram_id' => $this->mahram_id,
@@ -68,8 +101,6 @@ class PilgrimSearch extends Pilgrim
             'pilgrim_type_id' => $this->pilgrim_type_id,
             'personal_number' => $this->personal_number,
             'user_id' => $this->user_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
@@ -81,6 +112,32 @@ class PilgrimSearch extends Pilgrim
             ->andFilterWhere(['like', 'p_mrz', $this->p_mrz])
             ->andFilterWhere(['like', 'marital_status', $this->marital_status])
             ->andFilterWhere(['like', 'status', $this->status]);
+
+        $query->andWhere('first_name LIKE "%'.$this->fullName.'%"' .
+            ' OR last_name LIKE "%'.$this->fullName.'%"'.
+            ' OR middle_name LIKE "%'.$this->fullName.'%"'
+        );
+
+        if($this->birth_date){
+            $dateBegin = preg_replace('/(\d{2}).(\d{2}).(\d{1,4}) - (\d{2}).(\d{2}).(\d{1,4})/', '$3-$2-$1', $this->birth_date);
+            $dateEnd = preg_replace('/(\d{2}).(\d{2}).(\d{1,4}) - (\d{2}).(\d{2}).(\d{1,4})/', '$6-$5-$4', $this->birth_date);
+            $query->andWhere("pilgrim.birth_date BETWEEN '{$dateBegin}' AND '{$dateEnd}'");
+        }
+        if($this->p_issue_date){
+            $dateBegin = preg_replace('/(\d{2}).(\d{2}).(\d{1,4}) - (\d{2}).(\d{2}).(\d{1,4})/', '$3-$2-$1', $this->p_issue_date);
+            $dateEnd = preg_replace('/(\d{2}).(\d{2}).(\d{1,4}) - (\d{2}).(\d{2}).(\d{1,4})/', '$6-$5-$4', $this->p_issue_date);
+            $query->andWhere("pilgrim.p_issue_date BETWEEN '{$dateBegin}' AND '{$dateEnd}'");
+        }
+        if($this->p_expiry_date){
+            $dateBegin = preg_replace('/(\d{2}).(\d{2}).(\d{1,4}) - (\d{2}).(\d{2}).(\d{1,4})/', '$3-$2-$1', $this->p_expiry_date);
+            $dateEnd = preg_replace('/(\d{2}).(\d{2}).(\d{1,4}) - (\d{2}).(\d{2}).(\d{1,4})/', '$6-$5-$4', $this->p_expiry_date);
+            $query->andWhere("pilgrim.p_expiry_date BETWEEN '{$dateBegin}' AND '{$dateEnd}'");
+        }
+        if($this->created_at){
+            $dateBegin = preg_replace('/(\d{2}).(\d{2}).(\d{1,4}) - (\d{2}).(\d{2}).(\d{1,4})/', '$3-$2-$1', $this->created_at);
+            $dateEnd = preg_replace('/(\d{2}).(\d{2}).(\d{1,4}) - (\d{2}).(\d{2}).(\d{1,4})/', '$6-$5-$4', $this->created_at);
+            $query->andWhere("pilgrim.created_at BETWEEN '{$dateBegin}' AND '{$dateEnd}'");
+        }
 
         return $dataProvider;
     }

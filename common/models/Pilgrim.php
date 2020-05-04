@@ -31,6 +31,9 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  *
+ * @property string $fullName
+ * @property string $imageUrl
+ *
  * @property Group $group
  * @property Pilgrim $mahram
  * @property Pilgrim[] $pilgrims
@@ -118,6 +121,8 @@ class Pilgrim extends \yii\db\ActiveRecord
             'user_id' => Yii::t('app', 'User ID'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'fullName' => Yii::t('app', 'Full Name'),
+            'imageUrl' => Yii::t('app', 'Image Url'),
         ];
     }
 
@@ -129,12 +134,17 @@ class Pilgrim extends \yii\db\ActiveRecord
         return $this->hasOne(Group::className(), ['id' => 'group_id']);
     }
 
+    public function getFlight()
+    {
+        return $this->hasOne(Group::className(), ['id' => 'group_id'])->select('flight_id');
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getMahram()
     {
-        return $this->hasOne(Pilgrim::className(), ['id' => 'mahram_id']);
+        return $this->hasOne(self::className(), ['id' => 'mahram_id']);
     }
 
     /**
@@ -142,7 +152,7 @@ class Pilgrim extends \yii\db\ActiveRecord
      */
     public function getPilgrims()
     {
-        return $this->hasMany(Pilgrim::className(), ['mahram_id' => 'id']);
+        return $this->hasMany(self::className(), ['mahram_id' => 'id']);
     }
 
     /**
@@ -183,5 +193,18 @@ class Pilgrim extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    public function getImageUrl(){
+        $path = 'uploads/goods/'.$this->p_number;
+        if (file_exists($path) && $this->p_number){
+            return Yii::$app->homeUrl.$path;
+        }
+        return Yii::$app->homeUrl.'images/pilgrim_no_photo.png';
+    }
+
+    public function getFullName()
+    {
+        return $this->last_name. ' '. $this->first_name. ' '. $this->middle_name;
     }
 }
