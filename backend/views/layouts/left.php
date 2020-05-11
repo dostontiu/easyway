@@ -1,28 +1,27 @@
 <?php
 
-use mdm\admin\components\MenuHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Menu;
 
 $items = [
-    ['label' => '<i class="fa fa-user"></i> Add pilgrim', 'url' => ['/pilgrim/vue-index']],
-    ['label' => '<i class="fa fa-user"></i> Account', 'url' => ['/account']],
-    ['label' => '<i class="fa fa-apple"></i> Airport', 'url' => ['/airport']],
-    ['label' => '<i class="fa fa-apple"></i> Country', 'url' => ['/country']],
-    ['label' => '<i class="fa fa-apple"></i> Flight', 'url' => ['/flight']],
-    ['label' => '<i class="fa fa-apple"></i> Pilgrim', 'url' => ['/pilgrim']],
-    ['label' => '<i class="fa fa-apple"></i> Group', 'url' => ['/group']],
-    ['label' => '<i class="fa fa-apple"></i> Mahram name', 'url' => ['/mahram-name']],
-    ['label' => '<i class="fa fa-apple"></i> Pilgrim type', 'url' => ['/pilgrim-type']],
-    ['label' => '<i class="fa fa-apple"></i> Region', 'url' => ['/region']],
-    ['label' => '<i class="fa fa-apple"></i> Season', 'url' => ['/season']],
-    ['label' => '<i class="fa fa-apple"></i> Visa number', 'url' => ['/visa-number']],
-    ['label' => '<i class="fa fa-exchange"></i> Import excel', 'url' => ['/import/excel']],
+    ['label' => '<i class="icon-magnifier-add fa-fw"></i> <span class="hide-menu"> Add pilgrim</span>', 'url' => ['/pilgrim/vue-index']],
+    ['label' => '<i class="icon-folder-alt fa-fw"></i> <span class="hide-menu"> Account</span>', 'url' => ['/account/index']],
+    ['label' => '<i class="icon-folder-alt fa-fw"></i> <span class="hide-menu"> Airport</span>', 'url' => ['/airport/index']],
+    ['label' => '<i class="icon-folder-alt fa-fw"></i> <span class="hide-menu"> Country</span>', 'url' => ['/country/index']],
+    ['label' => '<i class="icon-rocket fa-fw"></i> <span class="hide-menu"> Flight</span>', 'url' => ['/flight/index']],
+    ['label' => '<i class="icon-folder-alt fa-fw"></i> <span class="hide-menu"> Pilgrim</span>', 'url' => ['/pilgrim/index']],
+    ['label' => '<i class="icon-hourglass fa-fw"></i> <span class="hide-menu"> Group</span>', 'url' => ['/group/index']],
+    ['label' => '<i class="icon-folder-alt fa-fw"></i> <span class="hide-menu"> Mahram name</span>', 'url' => ['/mahram-name/index']],
+    ['label' => '<i class="icon-folder-alt fa-fw"></i> <span class="hide-menu"> Pilgrim type</span>', 'url' => ['/pilgrim-type/index']],
+    ['label' => '<i class="icon-folder-alt fa-fw"></i> <span class="hide-menu"> Region</span>', 'url' => ['/region/index']],
+    ['label' => '<i class="icon-handbag fa-fw"></i> <span class="hide-menu"> Season</span>', 'url' => ['/season/index']],
+    ['label' => '<i class="icon-docs fa-fw"></i> <span class="hide-menu"> Visa number</span>', 'url' => ['/visa-number/index']],
+    ['label' => '<i class="icon-docs fa-fw"></i> <span class="hide-menu"> Import excel</span>', 'url' => ['/import/excel']],
 ];
 
 ?>
-<aside class="sidebar">
+<aside class="sidebar" role="navigation">
     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
         <div class="scroll-sidebar" style="overflow: hidden; width: auto; height: 100%;">
             <div class="user-profile">
@@ -46,7 +45,6 @@ $items = [
                             <li role="separator" class="divider"></li>
                             <li><a href="<?= Url::to(['account/create'])?>"><i class="fa fa-cog"></i> Account Settings</a></li>
                             <li role="separator" class="divider"></li>
-<!--                            <li><a href=""><i class="fa fa-power-off"></i> Logout</a></li>-->
                             <li>
                                 <?= Html::a(
                                     "<i class='fa fa-power-off'></i>".Yii::t('app', 'Logout'),
@@ -63,15 +61,16 @@ $items = [
                     </p>
                 </div>
             </div>
-            <nav class="sidebar-nav active">
+            <div class="am-sideleft">
+<!--            <nav class="sidebar-nav active">-->
                 <?= Menu::widget([
-//                    'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id),
-                    'options' => ['class' => ' in ', 'id' => 'side-menu'],
+                    'options' => ['class' => 'nav am-sideleft-tab'],
                     'items' => $items,
                     'encodeLabels' => false, //allows you to use html in labels
-                    'linkTemplate' => "<a class='waves-effect' href=\"{url}\">{label}</a>"
+                    'linkTemplate' => "<li class='nav-item'><a class='nav-link' href='{url}'>{label}</a></li>"
                 ]); ?>
-            </nav>
+<!--            </nav>-->
+            </div>
             <div class="slimScrollBar"
                  style="background: rgb(220, 220, 220); width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 1668px;"></div>
             <div class="slimScrollRail"

@@ -1,23 +1,25 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "005511085e3f649ca1f12bd6ce24589f",
+    "hash": "3ba4fd978a17aa9c1fdd75b4aaaefe1a",
+    "content-hash": "cee48039cb74b8e8d9cadbb50ac47fdc",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:twbs/bootstrap.git",
+                "url": "https://github.com/twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/twbs/bootstrap/zipball/68b0d231a13201eb14acd3dc84e51543d16e5f7e",
-                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
+                "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.9.1,<4.0"
@@ -38,7 +40,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/RobinHerbots/Inputmask/zipball/5e670ad62f50c738388d4dcec78d2888505ad77b",
-                "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
+                "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.7"
@@ -59,7 +62,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
-                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
+                "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -77,7 +81,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/bestiejs/punycode.js/zipball/38c8d3131a82567bfef18da09f7f4db68c84f8a3",
-                "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
+                "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3",
+                "shasum": null
             },
             "type": "bower-asset"
         },
@@ -92,7 +97,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/yiisoft/jquery-pjax/zipball/aef7b953107264f00234902a3880eb50dafc48be",
-                "reference": "aef7b953107264f00234902a3880eb50dafc48be"
+                "reference": "aef7b953107264f00234902a3880eb50dafc48be",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.8"
@@ -160,7 +166,7 @@
                 "markdown",
                 "markdown-extra"
             ],
-            "time": "2018-03-26T11:24:36+00:00"
+            "time": "2018-03-26 11:24:36"
         },
         {
             "name": "doctrine/lexer",
@@ -220,7 +226,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-06-08T11:03:04+00:00"
+            "time": "2019-06-08 11:03:04"
         },
         {
             "name": "egulias/email-validator",
@@ -277,7 +283,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2020-01-05T14:11:20+00:00"
+            "time": "2020-01-05 14:11:20"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -324,7 +330,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2019-10-28T03:44:26+00:00"
+            "time": "2019-10-28 03:44:26"
         },
         {
             "name": "johnitvn/yii2-ajaxcrud",
@@ -378,7 +384,7 @@
                 "template",
                 "yii2"
             ],
-            "time": "2016-03-21T10:56:25+00:00"
+            "time": "2016-03-21 10:56:25"
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
@@ -431,7 +437,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2019-12-13T10:21:22+00:00"
+            "time": "2019-12-13 10:21:22"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -480,7 +486,61 @@
                 "popover",
                 "popover-x"
             ],
-            "time": "2018-09-14T05:15:26+00:00"
+            "time": "2018-09-14 05:15:26"
+        },
+        {
+            "name": "kartik-v/yii2-date-range",
+            "version": "v1.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-date-range.git",
+                "reference": "fbc192c685c3c529a399d9a388036d08985401a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-date-range/zipball/fbc192c685c3c529a399d9a388036d08985401a6",
+                "reference": "fbc192c685c3c529a399d9a388036d08985401a6",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": ">=2.0.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\daterange\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "An advanced Yii 2 date range picker input for based on bootstrap-daterangepicker plugin.",
+            "homepage": "https://github.com/kartik-v/yii2-date-range",
+            "keywords": [
+                "bootstrap",
+                "bootstrap 3",
+                "date",
+                "date-range",
+                "extension",
+                "range",
+                "time",
+                "widget",
+                "yii2"
+            ],
+            "time": "2020-02-09 12:41:06"
         },
         {
             "name": "kartik-v/yii2-dialog",
@@ -531,7 +591,7 @@
                 "modal",
                 "yii2"
             ],
-            "time": "2018-10-09T08:08:51+00:00"
+            "time": "2018-10-09 08:08:51"
         },
         {
             "name": "kartik-v/yii2-editable",
@@ -584,7 +644,7 @@
                 "popover-x",
                 "widget"
             ],
-            "time": "2018-10-03T07:02:33+00:00"
+            "time": "2018-10-03 07:02:33"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -636,7 +696,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2019-08-26T12:57:09+00:00"
+            "time": "2019-08-26 12:57:09"
         },
         {
             "name": "kartik-v/yii2-krajee-base",
@@ -688,7 +748,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2019-03-13T17:14:54+00:00"
+            "time": "2019-03-13 17:14:54"
         },
         {
             "name": "kartik-v/yii2-mpdf",
@@ -740,7 +800,7 @@
                 "utf8",
                 "yii2"
             ],
-            "time": "2018-10-13T07:38:33+00:00"
+            "time": "2018-10-13 07:38:33"
         },
         {
             "name": "kartik-v/yii2-popover-x",
@@ -788,7 +848,7 @@
                 "popover",
                 "popover-x"
             ],
-            "time": "2014-11-25T09:26:09+00:00"
+            "time": "2014-11-25 09:26:09"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -840,7 +900,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2019-02-23T19:45:01+00:00"
+            "time": "2019-02-23 19:45:01"
         },
         {
             "name": "kartik-v/yii2-widget-datepicker",
@@ -852,7 +912,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/d75bfb12918b29902d96ecf8decd7e40b007d77f",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-datepicker/zipball/fada92bc506d382ea3367daac6a1f7a9adf434b2",
                 "reference": "d75bfb12918b29902d96ecf8decd7e40b007d77f",
                 "shasum": ""
             },
@@ -894,7 +954,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2019-08-23T17:23:20+00:00"
+            "time": "2019-08-23 17:23:20"
         },
         {
             "name": "kartik-v/yii2-widget-fileinput",
@@ -906,7 +966,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/7a66622a4077f86170aed338dce8778e7f6b5af9",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-fileinput/zipball/8616a7686508462da3de8f8d2021fc74f2cf40dc",
                 "reference": "7a66622a4077f86170aed338dce8778e7f6b5af9",
                 "shasum": ""
             },
@@ -949,7 +1009,61 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2019-10-07T11:05:21+00:00"
+            "time": "2019-10-07 11:05:21"
+        },
+        {
+            "name": "kartik-v/yii2-widget-select2",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-widget-select2.git",
+                "reference": "ffe1a245fb73fc4f4add741ca3bc8657e0976c12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-widget-select2/zipball/ffe1a245fb73fc4f4add741ca3bc8657e0976c12",
+                "reference": "ffe1a245fb73fc4f4add741ca3bc8657e0976c12",
+                "shasum": ""
+            },
+            "require": {
+                "kartik-v/yii2-krajee-base": ">=1.9",
+                "select2/select2": ">=4.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\select2\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "Enhanced Yii2 wrapper for the Select2 jQuery plugin (sub repo split from yii2-widgets).",
+            "homepage": "https://github.com/kartik-v/yii2-widget-select2",
+            "keywords": [
+                "dropdown",
+                "extension",
+                "form",
+                "jquery",
+                "plugin",
+                "select2",
+                "widget",
+                "yii2"
+            ],
+            "time": "2020-02-04 11:59:36"
         },
         {
             "name": "mdmsoft/yii2-admin",
@@ -1007,7 +1121,7 @@
                 "rbac",
                 "yii"
             ],
-            "time": "2018-11-12T12:35:44+00:00"
+            "time": "2018-11-12 12:35:44"
         },
         {
             "name": "mpdf/mpdf",
@@ -1075,7 +1189,7 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2019-02-06T13:32:19+00:00"
+            "time": "2019-02-06 13:32:19"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1123,7 +1237,21 @@
                 "object",
                 "object graph"
             ],
-            "time": "2020-01-17T21:11:47+00:00"
+            "time": "2020-01-17 21:11:47"
+        },
+        {
+            "name": "npm-asset/bootstrap",
+            "version": "4.4.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/bootstrap/-/bootstrap-4.4.1.tgz",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "paragonie/random_compat",
@@ -1168,7 +1296,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2018-07-02T15:55:56+00:00"
+            "time": "2018-07-02 15:55:56"
         },
         {
             "name": "phpoffice/phpexcel",
@@ -1231,7 +1359,7 @@
                 "xlsx"
             ],
             "abandoned": "phpoffice/phpspreadsheet",
-            "time": "2018-11-22T23:07:24+00:00"
+            "time": "2018-11-22 23:07:24"
         },
         {
             "name": "phpspec/php-diff",
@@ -1269,7 +1397,7 @@
                 }
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
-            "time": "2016-04-07T12:29:16+00:00"
+            "time": "2016-04-07 12:29:16"
         },
         {
             "name": "psr/log",
@@ -1316,7 +1444,45 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2019-11-01T11:05:21+00:00"
+            "time": "2019-11-01 11:05:21"
+        },
+        {
+            "name": "select2/select2",
+            "version": "4.0.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/select2/select2.git",
+                "reference": "45f2b83ceed5231afa7b3d5b12b58ad335edd82e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/select2/select2/zipball/45f2b83ceed5231afa7b3d5b12b58ad335edd82e",
+                "reference": "45f2b83ceed5231afa7b3d5b12b58ad335edd82e",
+                "shasum": ""
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "dist/js/select2.js"
+                    ],
+                    "styles": [
+                        "dist/css/select2.css"
+                    ],
+                    "files": [
+                        "dist/js/select2.js",
+                        "dist/js/i18n/*.js",
+                        "dist/css/select2.css"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Select2 is a jQuery based replacement for select boxes.",
+            "homepage": "https://select2.org/",
+            "time": "2020-01-28 05:01:22"
         },
         {
             "name": "setasign/fpdi",
@@ -1365,7 +1531,7 @@
                 "fpdi",
                 "pdf"
             ],
-            "time": "2017-05-11T14:25:49+00:00"
+            "time": "2017-05-11 14:25:49"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1427,7 +1593,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2019-11-12T09:31:26+00:00"
+            "time": "2019-11-12 09:31:26"
         },
         {
             "name": "symfony/polyfill-iconv",
@@ -1486,7 +1652,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2019-11-27 13:56:44"
         },
         {
             "name": "symfony/polyfill-intl-idn",
@@ -1548,7 +1714,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2019-11-27 13:56:44"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1607,7 +1773,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T14:18:11+00:00"
+            "time": "2019-11-27 14:18:11"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -1662,7 +1828,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2019-11-27 13:56:44"
         },
         {
             "name": "yiisoft/yii2",
@@ -1762,7 +1928,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2019-12-18T12:52:03+00:00"
+            "time": "2019-12-18 12:52:03"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1825,7 +1991,76 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2019-04-23T13:18:43+00:00"
+            "time": "2019-04-23 13:18:43"
+        },
+        {
+            "name": "yiisoft/yii2-bootstrap4",
+            "version": "2.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-bootstrap4.git",
+                "reference": "c67ae3f3624c35d977841f6b18d0d752ebed6420"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap4/zipball/c67ae3f3624c35d977841f6b18d0d752ebed6420",
+                "reference": "c67ae3f3624c35d977841f6b18d0d752ebed6420",
+                "shasum": ""
+            },
+            "require": {
+                "npm-asset/bootstrap": "^4.3",
+                "yiisoft/yii2": "~2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "<7",
+                "yiisoft/yii2-coding-standards": "~2.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\bootstrap4\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com",
+                    "homepage": "http://www.yiiframework.com/"
+                },
+                {
+                    "name": "Alexander Makarov",
+                    "email": "sam@rmcreative.ru",
+                    "homepage": "http://rmcreative.ru/"
+                },
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "amigo.cobos@gmail.com"
+                },
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                },
+                {
+                    "name": "Simon Karlen",
+                    "email": "simi.albi@outlook.com"
+                }
+            ],
+            "description": "The Twitter Bootstrap extension for the Yii framework",
+            "keywords": [
+                "bootstrap",
+                "bootstrap4",
+                "yii2"
+            ],
+            "time": "2019-10-08 11:01:37"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1880,7 +2115,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2019-07-16T13:22:30+00:00"
+            "time": "2019-07-16 13:22:30"
         },
         {
             "name": "yiisoft/yii2-gii",
@@ -1931,7 +2166,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2020-01-17T13:33:30+00:00"
+            "time": "2020-01-17 13:33:30"
         },
         {
             "name": "yiisoft/yii2-swiftmailer",
@@ -1981,7 +2216,7 @@
                 "swiftmailer",
                 "yii2"
             ],
-            "time": "2018-09-23T22:00:47+00:00"
+            "time": "2018-09-23 22:00:47"
         }
     ],
     "packages-dev": [
@@ -2042,7 +2277,7 @@
                 "gherkin",
                 "parser"
             ],
-            "time": "2019-01-16T14:22:17+00:00"
+            "time": "2019-01-16 14:22:17"
         },
         {
             "name": "codeception/base",
@@ -2132,7 +2367,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2019-04-24T11:36:34+00:00"
+            "time": "2019-04-24 11:36:34"
         },
         {
             "name": "codeception/phpunit-wrapper",
@@ -2178,7 +2413,7 @@
                 }
             ],
             "description": "PHPUnit classes used by Codeception",
-            "time": "2020-01-03T08:01:16+00:00"
+            "time": "2020-01-03 08:01:16"
         },
         {
             "name": "codeception/stub",
@@ -2208,7 +2443,7 @@
                 "MIT"
             ],
             "description": "Flexible Stub wrapper for PHPUnit's Mock Builder",
-            "time": "2019-03-02T15:35:10+00:00"
+            "time": "2019-03-02 15:35:10"
         },
         {
             "name": "codeception/verify",
@@ -2249,7 +2484,7 @@
                 }
             ],
             "description": "BDD assertion library for PHPUnit",
-            "time": "2019-07-30T18:21:46+00:00"
+            "time": "2019-07-30 18:21:46"
         },
         {
             "name": "doctrine/instantiator",
@@ -2305,7 +2540,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2019-10-21T16:45:58+00:00"
+            "time": "2019-10-21 16:45:58"
         },
         {
             "name": "fzaninotto/faker",
@@ -2355,7 +2590,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2019-12-12T13:22:17+00:00"
+            "time": "2019-12-12 13:22:17"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -2426,7 +2661,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2019-07-01T23:21:34+00:00"
+            "time": "2019-07-01 23:21:34"
         },
         {
             "name": "opis/closure",
@@ -2487,7 +2722,7 @@
                 "serialization",
                 "serialize"
             ],
-            "time": "2019-11-29T22:36:02+00:00"
+            "time": "2019-11-29 22:36:02"
         },
         {
             "name": "phar-io/manifest",
@@ -2542,7 +2777,7 @@
                 }
             ],
             "description": "Component for reading phar.io manifest information from a PHP Archive (PHAR)",
-            "time": "2017-03-05T18:14:27+00:00"
+            "time": "2017-03-05 18:14:27"
         },
         {
             "name": "phar-io/version",
@@ -2589,7 +2824,7 @@
                 }
             ],
             "description": "Library for handling version information and constraints",
-            "time": "2017-03-05T17:38:23+00:00"
+            "time": "2017-03-05 17:38:23"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -2641,7 +2876,7 @@
                 "reflection",
                 "static analysis"
             ],
-            "time": "2018-08-07T13:53:10+00:00"
+            "time": "2018-08-07 13:53:10"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2693,7 +2928,7 @@
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2019-12-28T18:55:12+00:00"
+            "time": "2019-12-28 18:55:12"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -2740,7 +2975,7 @@
                 }
             ],
             "description": "A PSR-5 based resolver of Class names, Types and Structural Element Names",
-            "time": "2019-08-22T18:11:29+00:00"
+            "time": "2019-08-22 18:11:29"
         },
         {
             "name": "phpspec/prophecy",
@@ -2803,7 +3038,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2019-12-22T21:05:45+00:00"
+            "time": "2019-12-22 21:05:45"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -2866,7 +3101,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-04-06T15:36:58+00:00"
+            "time": "2018-04-06 15:36:58"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2913,7 +3148,7 @@
                 "filesystem",
                 "iterator"
             ],
-            "time": "2017-11-27T13:52:08+00:00"
+            "time": "2017-11-27 13:52:08"
         },
         {
             "name": "phpunit/php-text-template",
@@ -2954,7 +3189,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2015-06-21T13:50:34+00:00"
+            "time": "2015-06-21 13:50:34"
         },
         {
             "name": "phpunit/php-timer",
@@ -3003,7 +3238,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2017-02-26T11:10:40+00:00"
+            "time": "2017-02-26 11:10:40"
         },
         {
             "name": "phpunit/php-token-stream",
@@ -3052,7 +3287,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2017-11-27T05:48:46+00:00"
+            "time": "2017-11-27 05:48:46"
         },
         {
             "name": "phpunit/phpunit",
@@ -3136,7 +3371,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-02-01T05:22:47+00:00"
+            "time": "2019-02-01 05:22:47"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3196,7 +3431,7 @@
                 "xunit"
             ],
             "abandoned": true,
-            "time": "2018-08-09T05:50:03+00:00"
+            "time": "2018-08-09 05:50:03"
         },
         {
             "name": "psr/container",
@@ -3245,7 +3480,7 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14T16:28:37+00:00"
+            "time": "2017-02-14 16:28:37"
         },
         {
             "name": "psr/http-message",
@@ -3295,7 +3530,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06T14:39:51+00:00"
+            "time": "2016-08-06 14:39:51"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -3335,7 +3570,7 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "time": "2019-03-08T08:55:37+00:00"
+            "time": "2019-03-08 08:55:37"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -3380,7 +3615,7 @@
             ],
             "description": "Looks up which function or method a line of code belongs to",
             "homepage": "https://github.com/sebastianbergmann/code-unit-reverse-lookup/",
-            "time": "2017-03-04T06:30:41+00:00"
+            "time": "2017-03-04 06:30:41"
         },
         {
             "name": "sebastian/comparator",
@@ -3444,7 +3679,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2018-02-01T13:46:46+00:00"
+            "time": "2018-02-01 13:46:46"
         },
         {
             "name": "sebastian/diff",
@@ -3496,7 +3731,7 @@
             "keywords": [
                 "diff"
             ],
-            "time": "2017-08-03T08:09:46+00:00"
+            "time": "2017-08-03 08:09:46"
         },
         {
             "name": "sebastian/environment",
@@ -3546,7 +3781,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2017-07-01T08:51:00+00:00"
+            "time": "2017-07-01 08:51:00"
         },
         {
             "name": "sebastian/exporter",
@@ -3613,7 +3848,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2019-09-14T09:02:43+00:00"
+            "time": "2019-09-14 09:02:43"
         },
         {
             "name": "sebastian/global-state",
@@ -3664,7 +3899,7 @@
             "keywords": [
                 "global state"
             ],
-            "time": "2017-04-27T15:39:26+00:00"
+            "time": "2017-04-27 15:39:26"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -3711,7 +3946,7 @@
             ],
             "description": "Traverses array structures and object graphs to enumerate all referenced objects",
             "homepage": "https://github.com/sebastianbergmann/object-enumerator/",
-            "time": "2017-08-03T12:35:26+00:00"
+            "time": "2017-08-03 12:35:26"
         },
         {
             "name": "sebastian/object-reflector",
@@ -3756,7 +3991,7 @@
             ],
             "description": "Allows reflection of object attributes, including inherited and non-public ones",
             "homepage": "https://github.com/sebastianbergmann/object-reflector/",
-            "time": "2017-03-29T09:07:27+00:00"
+            "time": "2017-03-29 09:07:27"
         },
         {
             "name": "sebastian/recursion-context",
@@ -3809,7 +4044,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2017-03-03T06:23:57+00:00"
+            "time": "2017-03-03 06:23:57"
         },
         {
             "name": "sebastian/resource-operations",
@@ -3851,7 +4086,7 @@
             ],
             "description": "Provides a list of PHP built-in functions that operate on resources",
             "homepage": "https://www.github.com/sebastianbergmann/resource-operations",
-            "time": "2015-07-28T20:34:47+00:00"
+            "time": "2015-07-28 20:34:47"
         },
         {
             "name": "sebastian/version",
@@ -3894,7 +4129,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2016-10-03T07:35:21+00:00"
+            "time": "2016-10-03 07:35:21"
         },
         {
             "name": "symfony/browser-kit",
@@ -3951,7 +4186,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-02-23 15:17:42"
         },
         {
             "name": "symfony/console",
@@ -4027,7 +4262,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-17T10:32:23+00:00"
+            "time": "2019-12-17 10:32:23"
         },
         {
             "name": "symfony/css-selector",
@@ -4080,7 +4315,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2019-10-12T00:35:04+00:00"
+            "time": "2019-10-12 00:35:04"
         },
         {
             "name": "symfony/dom-crawler",
@@ -4141,7 +4376,7 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2019-10-29T11:38:30+00:00"
+            "time": "2019-10-29 11:38:30"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -4211,7 +4446,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-28T13:33:56+00:00"
+            "time": "2019-11-28 13:33:56"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -4269,7 +4504,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-09-17T09:54:03+00:00"
+            "time": "2019-09-17 09:54:03"
         },
         {
             "name": "symfony/finder",
@@ -4318,7 +4553,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-17T21:56:56+00:00"
+            "time": "2019-11-17 21:56:56"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -4376,7 +4611,7 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2019-11-27 13:56:44"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -4434,7 +4669,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T16:25:15+00:00"
+            "time": "2019-11-27 16:25:15"
         },
         {
             "name": "symfony/service-contracts",
@@ -4492,7 +4727,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-10-14T12:27:06+00:00"
+            "time": "2019-10-14 12:27:06"
         },
         {
             "name": "symfony/yaml",
@@ -4551,7 +4786,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2019-12-10T10:33:21+00:00"
+            "time": "2019-12-10 10:33:21"
         },
         {
             "name": "theseer/tokenizer",
@@ -4591,7 +4826,7 @@
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "time": "2019-06-13T22:48:21+00:00"
+            "time": "2019-06-13 22:48:21"
         },
         {
             "name": "webmozart/assert",
@@ -4639,7 +4874,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2019-11-24T13:36:37+00:00"
+            "time": "2019-11-24 13:36:37"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -4697,7 +4932,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2020-01-17T13:40:32+00:00"
+            "time": "2020-01-17 13:40:32"
         },
         {
             "name": "yiisoft/yii2-faker",
@@ -4744,14 +4979,15 @@
                 "faker",
                 "yii2"
             ],
-            "time": "2018-02-19T20:27:10+00:00"
+            "time": "2018-02-19 20:27:10"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/yii2-widget-fileinput": 20,
-        "kartik-v/yii2-widget-datepicker": 20
+        "kartik-v/yii2-widget-datepicker": 20,
+        "kartik-v/yii2-widget-select2": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

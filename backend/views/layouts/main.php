@@ -25,10 +25,7 @@ AppAsset::register($this);
 
 <?php
 if (Yii::$app->user->isGuest) {
-    echo $this->render(
-        'login',
-        ['content' => $content]
-    );
+    echo $this->render('login', ['content' => $content]);
 } else {
     ?>
     <div class="preloader" style="display: none;">
@@ -38,10 +35,7 @@ if (Yii::$app->user->isGuest) {
     <?php
     echo $this->render('header');
     echo $this->render('left');
-    echo $this->render(
-        'content',
-        ['content' => $content]
-    );
+    echo $this->render('content', ['content' => $content]);
 }
 ?>
 </div>

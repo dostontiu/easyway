@@ -19,9 +19,9 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
 //        'plugins/components/jquery/dist/jquery.min.js',
+        'plugins/demo/js/sidebarmenu.js',
         'plugins/demo/js/jquery.slimscroll.js',
         'plugins/demo/js/waves.js',
-        'plugins/demo/js/sidebarmenu.js',
         'plugins/demo/js/custom.js',
         'plugins/components/styleswitcher/jQuery.style.switcher.js',
     ];
